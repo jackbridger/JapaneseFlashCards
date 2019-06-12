@@ -1,3 +1,3 @@
-window.onload = function() {
-    document.getElementById('pagetitle').innerHTML = 'The real title';
-}
+// window.onload = function() {
+//     document.getElementById('pagetitle').innerHTML = 'The real title';
+// }
