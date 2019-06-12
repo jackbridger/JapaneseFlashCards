@@ -1,19 +1,67 @@
 body {
     display: grid;
-    grid-template: 20vh 60vh auto / auto  70vw auto;
+    grid-template-columns: 10vw 80vw 10vw;
+    grid-template-rows:  10vh 10vh 70vh auto;
 }
-#pagetitle {
+#page-title {
     grid-row: 1/1;
-    grid-column: 2/2;   
+    grid-column: 2/2;
+    border: 1px solid red;
 }
-#pagetitle h1 {
+#page-title h1 {
     color: red;
     text-align: center;
+    font-size: 4vh;
 }
 
-#flashcontainer {
-    grid-row: 2 / 2;
+#timer-count {
+    grid-row: 2/2;
+    grid-column:2/2;
+    border: 1px solid green;
+    display: flex;
+}
+#card-count {
+    display: flex;
+}
+
+#flash-container {
+    /* child of body */
+    grid-row: 3 / 3;
     grid-column: 2/2;
     align-content: center;
     border: 1px solid;
+
+    /* parent of flashcard */
+    display: grid;
+    grid-template: auto auto auto 5vh / 100%;
+
 }
+
+#test-text {
+    grid-row-start: 1;
+    grid-row-end: 4;
+    font-size: calc(3vw + 2.5vh);
+}
+
+#audio {
+
+}
+
+#btn-container {
+    grid-row-start: 4;
+    grid-row-end: 5;
+    display: flex;
+    justify-content: space-evenly
+    
+}
+.btn {
+    background-color: red;
+    color: white;
+    font-size: calc(1.5vw + 1.25vh);
+    text-align: center;
+    padding: 0 1vw 0 1vw ; 
+    vertical-align: middle;
+
+}
+
+
