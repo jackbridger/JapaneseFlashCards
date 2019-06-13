@@ -9,19 +9,35 @@ body {
     border: 1px solid red;
 }
 #page-title h1 {
-    color: red;
+    color: blue;
     text-align: center;
-    font-size: 4vh;
+    font-size: 3vh;
 }
-
 #timer-count {
     grid-row: 2/2;
     grid-column:2/2;
     border: 1px solid green;
-    display: flex;
+
+    /* parent */
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: green;
 }
+
+#timer-status {
+    background-color: orange;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    padding: 2vw;
+
+}
+
 #card-count {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    padding: 2vw;
     display: flex;
+    justify-content: space-between;
 }
 
 #flash-container {
@@ -37,10 +53,15 @@ body {
 
 }
 
+
+
+
+
 #test-text {
     grid-row-start: 1;
     grid-row-end: 4;
     font-size: calc(3vw + 2.5vh);
+    padding: 2vw;
 }
 
 #audio {
