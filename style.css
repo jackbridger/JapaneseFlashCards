@@ -1,7 +1,7 @@
 body {
     display: grid;
     grid-template-columns: 10vw 80vw 10vw;
-    grid-template-rows:  10vh 10vh 70vh auto;
+    grid-template-rows:   10vh 70vh 10vh auto;
 }
 #page-title {
     grid-row: 1/1;
@@ -14,7 +14,7 @@ body {
     font-size: 3vh;
 }
 #timer-count {
-    grid-row: 2/2;
+    grid-row: 3 /3;
     grid-column:2/2;
     border: 1px solid green;
 
@@ -40,21 +40,29 @@ body {
     justify-content: space-between;
 }
 
-#flash-container {
-    /* child of body */
-    grid-row: 3 / 3;
+#flash-container-before {
+
+    grid-row: 2 / 2;
     grid-column: 2/2;
     align-content: center;
     border: 1px solid;
-
     /* parent of flashcard */
     display: grid;
-    grid-template: auto auto auto 5vh / 100%;
+    grid-template:  auto auto auto 5vh / 100%;
 
 }
+#flash-container-after {
+    /* child of body */
+    visibility: hidden;
+    grid-row: 2 / 2;
+    grid-column: 2/2;
+    align-content: center;
+    border: 1px solid;
+    /* parent of flashcard */
+    display: grid;
+    grid-template:  auto auto auto 5vh / 100%;
 
-
-
+}
 
 
 #test-text {
@@ -64,9 +72,6 @@ body {
     padding: 2vw;
 }
 
-#audio {
-
-}
 
 #btn-container {
     grid-row-start: 4;
@@ -75,6 +80,14 @@ body {
     justify-content: space-evenly
     
 }
+#audio-container {
+    grid-row-start: 4;
+    grid-row-end: 5;
+    display: flex;
+    justify-content: space-evenly
+    
+}
+
 .btn {
     background-color: red;
     color: white;
