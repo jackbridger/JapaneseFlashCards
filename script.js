@@ -1,3 +1,40 @@
+const btnUntestedCounter = document.getElementById('card-new');
+const btnBadCounter = document.getElementById('card-bad');
+const btnOkCounter = document.getElementById('card-ok');
+const btnGoodCounter = document.getElementById('card-good');
+const btnExcellentCounter = document.getElementById('card-excellent');
+
+const storeInformation = (choice)  => {
+    counter[choice] += 1; 
+    counter.untested -= 1;
+
+    btnUntestedCounter.innerText = counter.untested;
+
+    switch (choice) {
+        case 'bad':
+            btnBadCounter.innerText = counter[choice];
+        break;
+        case 'ok':
+            btnOkCounter.innerText = counter[choice];
+        break;
+        case 'good':
+            btnGoodCounter.innerText = counter[choice];
+        break;
+        case 'excellent':
+            btnExcellentCounter.innerText = counter[choice];
+        break;
+    }
+}
+
+let counter =
+    {
+    untested: 30,
+    bad: 0,
+    ok: 0,
+    good: 0,
+    excellent: 0,
+    }
+
 let card_obj = function(){
     
     
@@ -18,16 +55,13 @@ let card_obj = function(){
             card_answer.style.visibility = 'visible';} 
     };
     
-    card_question.addEventListener('click',flipCard);
+    card_question.addEventListener('click', flipCard);
 
 }();
 
 
 let phrases = function() {
-    btn_bad = document.getElementById('btn-bad');
-    btn_ok = document.getElementById('btn-ok');
-    btn_good = document.getElementById('btn-good');
-    btn_excellent = document.getElementById('btn-excellent');
+
 
     list_phrases = 
     [
@@ -64,4 +98,7 @@ let phrases = function() {
 
 
 }();
+
+
+
 
