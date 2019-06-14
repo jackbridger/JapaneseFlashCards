@@ -1,4 +1,6 @@
 let card_obj = function(){
+    
+    
     card_question = document.getElementById('flash-container-before');
     card_answer = document.getElementById('flash-container-after');
     card_question.style.visibility = 'visible';
@@ -22,6 +24,10 @@ let card_obj = function(){
 
 
 let phrases = function() {
+    btn_bad = document.getElementById('btn-bad');
+    btn_ok = document.getElementById('btn-ok');
+    btn_good = document.getElementById('btn-good');
+    btn_excellent = document.getElementById('btn-excellent');
 
     list_phrases = 
     [
