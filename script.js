@@ -10,7 +10,7 @@ let time = new Date();
 const timeStart = time.getTime();
 
 function updateCounter() {
-    btnUntestedCounter.innerHTML = all_arrs[0].length
+    btnUntestedCounter.innerHTML = all_arrs[0].length;
     btnBadCounter.innerHTML = all_arrs[1].length;
     btnOkCounter.innerHTML = all_arrs[2].length;
     btnGoodCounter.innerHTML = all_arrs[3].length;
@@ -21,6 +21,9 @@ function setUp() {
     updateCounter();
     document.getElementById('english-text').innerText = list_phrases[all_arrs[current_pile][0]].englishText;
     document.getElementById('japanese-text').innerText = list_phrases[all_arrs[current_pile][0]].japaneseText;
+    let audio_clip = new Audio(list_phrases[all_arrs[current_pile][0]].audioLink);
+    audio_btn = document.getElementById('audio-container');
+    audio_btn.addEventListener('click', audio_clip.play());
 }
 
 let current_pile = 0;
@@ -30,7 +33,7 @@ const list_phrases =
     1: {
         englishText: 'Good Weather, huh!',
         japaneseText: 'いい天気ですね (Ii Tenki desu ne)',
-        audioLink: 'unknown'
+        audioLink: 'nice_weather.mp4'
     },
    2: {
         englishText: 'Long Time, No See!',
@@ -103,6 +106,7 @@ for (let i = 1; i <= list_length; i++) {
 
 card_question = document.getElementById('flash-container-before');
 card_answer = document.getElementById('flash-container-after');
+button_flip = document.getElementById('btn-flip');
 card_question.style.visibility = 'visible';
 card_answer.style.visibility = 'hidden';
 
@@ -118,7 +122,7 @@ flipCard = function() {
         card_answer.style.visibility = 'visible';} 
 };
 
-card_question.addEventListener('click', flipCard);
+button_flip.addEventListener('click', flipCard);
 
 
 function storeInformation(button) {
