@@ -4,6 +4,18 @@ const btnOkCounter = document.getElementById('card-ok');
 const btnGoodCounter = document.getElementById('card-good');
 const btnExcellentCounter = document.getElementById('card-excellent');
 
+function updateCounter() {
+    btnUntestedCounter.innerHTML = all_arrs[0].length
+    btnBadCounter.innerHTML = all_arrs[1].length;
+    btnOkCounter.innerHTML = all_arrs[2].length;
+    btnGoodCounter.innerHTML = all_arrs[3].length;
+    btnExcellentCounter.innerHTML = all_arrs[4].length;
+}
+function setUp() {
+    updateCounter();
+    document.getElementById('english-text').innerText = list_phrases[all_arrs[current_pile][0]].englishText;
+    document.getElementById('japanese-text').innerText = list_phrases[all_arrs[current_pile][0]].japaneseText;
+}
 
 let current_pile = 0;
 
@@ -41,8 +53,7 @@ let all_arrs = [[],[],[],[],[]];
 for (let i = 1; i <= list_length; i++) {
     all_arrs[0].push(i);
 }
-console.log(all_arrs);
-    
+
     card_question = document.getElementById('flash-container-before');
     card_answer = document.getElementById('flash-container-after');
     card_question.style.visibility = 'visible';
@@ -61,10 +72,6 @@ console.log(all_arrs);
     };
     
     card_question.addEventListener('click', flipCard);
-
-
-
-
 
 
 function storeInformation(button) {
@@ -92,9 +99,12 @@ function storeInformation(button) {
             current_pile = i;
         }
     }
+        updateCounter();
         flipCard();
         document.getElementById('english-text').innerText = list_phrases[all_arrs[current_pile][0]].englishText;
         document.getElementById('japanese-text').innerText = list_phrases[all_arrs[current_pile][0]].japaneseText;
 
     console.log(all_arrs);
 }
+
+document.onload = setUp();
