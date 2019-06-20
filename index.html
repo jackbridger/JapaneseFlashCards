@@ -9,14 +9,14 @@
 </head>
 <body>
     <div id="page-title"> 
-        <h1>50 Japanese Phrases to learn</h1>
+        <h1>20 Japanese Phrases You Can Use Today</h1>
     </div>
 
 
     <main id="flash-container-before">
         
         
-        <div id="japanese-text">いいですよ</div>
+        <div id="japanese-text"></div>
         <button id ="btn-flip">Flip</button>
         <audio controls id="audio-container">
             Audio clip
@@ -25,14 +25,14 @@
     </main>
     <main id="flash-container-after">
         
-        <div id="english-text">It’s Good</div>
+        <div id="english-text"></div>
         
 
         <div id="btn-container">
-            <button onclick="storeInformation('bad')" id="btn-bad" class="btn">Bad</button>
-            <button onclick="storeInformation('ok')" id="btn-ok" class="btn">OK</button>
-            <button onclick="storeInformation('good')" id="btn-good" class="btn">Good</button>
-            <button onclick="storeInformation('excellent')" id="btn-excellent" class="btn">Excellent</button>
+            <button onclick="progressCheck('bad')" id="btn-bad" class="btn">Bad</button>
+            <button onclick="progressCheck('ok')" id="btn-ok" class="btn">OK</button>
+            <button onclick="progressCheck('good')" id="btn-good" class="btn">Good</button>
+            <button onclick="progressCheck('excellent')" id="btn-excellent" class="btn">Excellent</button>
         </div>
 
     </main>
@@ -44,7 +44,7 @@
             0s
         </div>
         <div id="card-count">
-            <div id="card-new">30</div>
+            <div id="card-new">0</div>
             <div id="card-bad">0</div>
             <div id="card-ok">0</div>
             <div id="card-good">0</div>

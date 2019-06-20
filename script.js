@@ -1,32 +1,5 @@
-const btnUntestedCounter = document.getElementById('card-new');
-const btnBadCounter = document.getElementById('card-bad');
-const btnOkCounter = document.getElementById('card-ok');
-const btnGoodCounter = document.getElementById('card-good');
-const btnExcellentCounter = document.getElementById('card-excellent');
-
-const timerSpace = document.getElementById('timer-status');
-
-let time = new Date();
-const timeStart = time.getTime();
-
-function updateCounter() {
-    btnUntestedCounter.innerHTML = all_arrs[0].length;
-    btnBadCounter.innerHTML = all_arrs[1].length;
-    btnOkCounter.innerHTML = all_arrs[2].length;
-    btnGoodCounter.innerHTML = all_arrs[3].length;
-    btnExcellentCounter.innerHTML = all_arrs[4].length;
-}
-
-function setUp() {
-    updateCounter();
-    document.getElementById('english-text').innerText = list_phrases[all_arrs[current_pile][0]].englishText;
-    document.getElementById('japanese-text').innerText = list_phrases[all_arrs[current_pile][0]].japaneseText;
-    document.getElementById('audio-container').src = list_phrases[all_arrs[current_pile][0]].audioLink;
-}
-
-let current_pile = 0;
-
-const list_phrases = 
+// The Japanese, English and audio JSON
+const phraseJSON = 
 {
     1: {
         englishText: 'Good Weather, huh!',
@@ -44,13 +17,13 @@ const list_phrases =
         audioLink: 'unknown'
     },
     4: {
-        englishText: 'I’m Home',
-        japaneseText: 'ただいま',
+        englishText: 'Seriously?',
+        japaneseText: 'マジで',
         audioLink: 'unknown'
     },
     5: {
-        englishText: 'Welcome Home',
-        japaneseText: 'おかえりなさい',
+        englishText: 'No way!',
+        japaneseText: 'うそ!',
         audioLink: 'unknown'
     },
     6: {
@@ -65,13 +38,13 @@ const list_phrases =
     }
     ,    
     8: {
-        englishText: 'I’m Going',
-        japaneseText: '行ってきます (Ittekimasu)',
+        englishText: 'Do you understand?',
+        japaneseText: 'わかりますか ',
         audioLink: 'unknown'
     },
     9: {
-        englishText: 'Go and Come Back',
-        japaneseText: '行ってらっしゃい (Itterasshai)',
+        englishText: 'What is _ in Japanese?',
+        japaneseText: '日本語で_は何ですか (Nihongo de _ wa Nan desu ka?)',
         audioLink: 'unknown'
     },
     10: {
@@ -94,79 +67,153 @@ const list_phrases =
         japaneseText: 'ゆっくりお願いします (Yukkuri Onegai Shimasu)',
         audioLink: 'unknown'
     },
+    14: {
+        englishText: 'I Speak a Little Japanese',
+        japaneseText: '少し日本語を話します (Sukoshi Nihongo wo Hanashimasu)',
+        audioLink: 'unknown'
+    },
+    15: {
+        englishText: 'Let’s Meet Again!',
+        japaneseText: 'また会いましょう (Mata Aimashou)',
+        audioLink: 'unknown'
+    },
+    16: {
+        englishText: 'Where is the bathroom?',
+        japaneseText: 'お手洗いはどこですか (Otearai wa doko desu ka)',
+        audioLink: 'unknown'
+    },
+    17: {
+        englishText: 'Do you use line?',
+        japaneseText: 'Line を利用しますか (Line wo Riyou Shimasu ka)',
+        audioLink: 'unknown'
+    },
+    18: {
+        englishText: 'What happened?',
+        japaneseText: 'どうしたんだ',
+        audioLink: 'unknown'
+    },
+    19: {
+        englishText: 'Can you speak English?',
+        japaneseText: '英語を話せますか (Eigo wo Hanasemasu ka:)',
+        audioLink: 'unknown'
+    },
+    20: {
+        englishText: 'When Can We Meet?',
+        japaneseText: 'いつは会えますか (Itsu wa Aemasu ka)',
+        audioLink: 'unknown'
+    }
 };
-const list_length = _.size(list_phrases);
+// The number of phrases in the JSON
+const numberOfPhrases = _.size(phraseJSON);
 
-let all_arrs = [[],[],[],[],[]];
-for (let i = 1; i <= list_length; i++) {
-    all_arrs[0].push(i);
+// We use these arrays to record how well the user has learned each phrase. 
+// The numbers stored in the arrays keys which map to each phrase in JSON object. 
+// Initally, all phrases are in the first array - the untested array. 
+// The far right right array is where the phrases which are perfected are.
+let phraseProgressPiles = [[],[],[],[],[]];
+for (let i = 1; i <= numberOfPhrases; i++) {
+    phraseProgressPiles[0].push(i);
+}
+// Initially, we go through the untested set of cards. This value corresponds to the 
+// lowest progress pile which contains a number(s).
+let lowestProgressPile = 0;
+
+const untestedProgressCount = document.getElementById('card-new');
+const badProgressCount = document.getElementById('card-bad');
+const okProgressCount = document.getElementById('card-ok');
+const goodProgressCount = document.getElementById('card-good');
+const excellentProgressCount = document.getElementById('card-excellent');
+
+function updateProgressPileCountsHTML() {
+    untestedProgressCount.innerHTML = phraseProgressPiles[0].length;
+    badProgressCount.innerHTML = phraseProgressPiles[1].length;
+    okProgressCount.innerHTML = phraseProgressPiles[2].length;
+    goodProgressCount.innerHTML = phraseProgressPiles[3].length;
+    excellentProgressCount.innerHTML = phraseProgressPiles[4].length;
 }
 
-card_question = document.getElementById('flash-container-before');
-card_answer = document.getElementById('flash-container-after');
-button_flip = document.getElementById('btn-flip');
-card_question.style.visibility = 'visible';
-card_answer.style.visibility = 'hidden';
+// Setting the initial time the page was loaded 
+const timePageLoaded = new Date().getTime();
+// HTML element that displays the time studying 
+const timeElapsedOnPageHTML = document.getElementById('timer-status');
+// Keeping count of time elapsed since pageLoad
+let timeElapsed, minutesElapsed, secondsElapsed;
 
+// Updates HTML with next phrase 
+function updateCurrentPhraseHTML() {
+    document.getElementById('english-text').innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].englishText;
+    document.getElementById('japanese-text').innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].japaneseText;
+    document.getElementById('audio-container').src = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].audioLink;
+}
+// HTML elems of front (japanese) and back (english) of the card. And the flip button.
+japanesePhraseContainerHTML = document.getElementById('flash-container-before');
+japanesePhraseContainerHTML.style.visibility = 'visible';
+englishPhraseContainerHTML = document.getElementById('flash-container-after');
+englishPhraseContainerHTML.style.visibility = 'hidden';
+flipCardButtonHTML = document.getElementById('btn-flip');
+
+// Hides/displays front or back of the flashcard when flip is pressed. 
 flipCard = function() {
-    if (card_question.style.visibility === 'visible') {
-        card_question.style.visibility = 'hidden';}
+    if (japanesePhraseContainerHTML.style.visibility === 'visible') {
+        japanesePhraseContainerHTML.style.visibility = 'hidden';}
     else {
-        card_question.style.visibility = 'visible';} 
+        japanesePhraseContainerHTML.style.visibility = 'visible';} 
 
-    if (card_answer.style.visibility === 'visible') {
-        card_answer.style.visibility = 'hidden';}
+    if (englishPhraseContainerHTML.style.visibility === 'visible') {
+        englishPhraseContainerHTML.style.visibility = 'hidden';}
     else {
-        card_answer.style.visibility = 'visible';} 
+        englishPhraseContainerHTML.style.visibility = 'visible';} 
 };
+flipCardButtonHTML.addEventListener('click', flipCard);
 
-button_flip.addEventListener('click', flipCard);
+// Allocate the tested card to its new progressPile, 
+// Update the current phrase HTML
+// Update the progress count HTML 
+// Flip the card from back to front. 
+function progressCheck(buttonPressed) {
+    current = phraseProgressPiles[lowestProgressPile].shift();
 
-
-function storeInformation(button) {
-    current = all_arrs[current_pile].shift();
-
-    if (button === 'bad') {
-        all_arrs[1].push(current);
+    if (buttonPressed === 'bad') {
+        phraseProgressPiles[1].push(current);
     }
-    else if (button === 'ok') {
-        all_arrs[2].push(current);    
+    else if (buttonPressed === 'ok') {
+        phraseProgressPiles[2].push(current);    
     }
-    else if (button === 'good') {
-        all_arrs[3].push(current);   
+    else if (buttonPressed === 'good') {
+        phraseProgressPiles[3].push(current);   
     }
-    else if (button === 'excellent') {
-        all_arrs[4].push(current);
+    else if (buttonPressed === 'excellent') {
+        phraseProgressPiles[4].push(current);
     }
-    if (all_arrs[4].length === list_length)
+    if (phraseProgressPiles[4].length === numberOfPhrases)
     {
         alert('completed everything')
     }
-
+    // Find the lowest level of confidence pile
     for (var i = 4; i >= 0; i--) {
-        if (all_arrs[i].length > 0){
-            current_pile = i;
+        if (phraseProgressPiles[i].length > 0){
+            lowestProgressPile = i;
         }
     }
-        setUp();
+        updateCurrentPhraseHTML();
+        updateProgressPileCountsHTML();
         flipCard();
-
-
-    console.log(all_arrs);
 }
 
-var timer = setInterval(function() {
-    let currentTime = new Date();
-    let timeElapsed = currentTime.getTime() - timeStart;
+
+var stopwatch = setInterval(function() {
+    timeElapsed = new Date().getTime() - timePageLoaded;
     timeElapsed = Math.floor(timeElapsed / 1000);
-    let minutes = Math.floor(timeElapsed / 60);
-    let seconds = timeElapsed - (minutes * 60)
-    if (minutes > 0)
-        timerSpace.innerHTML = minutes + 'm ' + seconds + 's'
+    minutesElapsed = Math.floor(timeElapsed / 60);
+    secondsElapsed = timeElapsed - (minutesElapsed * 60)
+    if (minutesElapsed > 0)
+        timeElapsedOnPageHTML.innerHTML = minutesElapsed + 'm ' + secondsElapsed + 's'
     else 
-        timerSpace.innerHTML = seconds + 's';
+        timeElapsedOnPageHTML.innerHTML = secondsElapsed + 's';
 }, 1000);
 
-
-
-document.onload = setUp();
+// initalise the phrases and counts
+(function() {
+    updateCurrentPhraseHTML();
+    updateProgressPileCountsHTML();
+})();
