@@ -4,6 +4,7 @@ const btnOkCounter = document.getElementById('card-ok');
 const btnGoodCounter = document.getElementById('card-good');
 const btnExcellentCounter = document.getElementById('card-excellent');
 
+
 let current_pile = 0;
 
 const list_phrases = 
@@ -27,11 +28,20 @@ const list_phrases =
         englishText: 'english 4',
         japaneseText: 'japanese 4',
         audioLink: 'unknown'
+    },
+    5: {
+        englishText: 'english 5',
+        japaneseText: 'japanese 5',
+        audioLink: 'unknown'
     }
 };
-
 const list_length = _.size(list_phrases);
 
+let all_arrs = [[],[],[],[],[]];
+for (let i = 1; i <= list_length; i++) {
+    all_arrs[0].push(i);
+}
+console.log(all_arrs);
     
     card_question = document.getElementById('flash-container-before');
     card_answer = document.getElementById('flash-container-after');
@@ -55,7 +65,7 @@ const list_length = _.size(list_phrases);
 
 
 
-let all_arrs = [[1,2,3,4],[],[],[],[]];
+
 
 function storeInformation(button) {
     current = all_arrs[current_pile].shift();
