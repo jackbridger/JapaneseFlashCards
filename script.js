@@ -28,30 +28,71 @@ let current_pile = 0;
 const list_phrases = 
 {
     1: {
-        englishText: 'It’s Good',
-        japaneseText: 'japanese 1',
+        englishText: 'Good Weather, huh!',
+        japaneseText: 'いい天気ですね (Ii Tenki desu ne)',
         audioLink: 'unknown'
     },
    2: {
-        englishText: 'english 2',
-        japaneseText: 'japanese 2',
+        englishText: 'Long Time, No See!',
+        japaneseText: '久しぶり！(Hisashiburi)',
         audioLink: 'unknown'
     },
     3: {
-        englishText: 'english 3',
-        japaneseText: 'japanese 3',
+        englishText: 'See You Later',
+        japaneseText: 'じゃまた',
         audioLink: 'unknown'
     },
     4: {
-        englishText: 'english 4',
-        japaneseText: 'japanese 4',
+        englishText: 'I’m Home',
+        japaneseText: 'ただいま',
         audioLink: 'unknown'
     },
     5: {
-        englishText: 'english 5',
-        japaneseText: 'japanese 5',
+        englishText: 'Welcome Home',
+        japaneseText: 'おかえりなさい',
+        audioLink: 'unknown'
+    },
+    6: {
+        englishText: 'Please Excuse Me (for Leaving)',
+        japaneseText: '失礼します (Shitsurei Shimasu)',
+        audioLink: 'unknown'
+    },
+    7: {
+        englishText: 'You Must Be Tired or Thanks for Your Hard Work',
+        japaneseText: 'お疲れ様でした (Otsukaresama Deshita)',
         audioLink: 'unknown'
     }
+    ,    
+    8: {
+        englishText: 'I’m Going',
+        japaneseText: '行ってきます (Ittekimasu)',
+        audioLink: 'unknown'
+    },
+    9: {
+        englishText: 'Go and Come Back',
+        japaneseText: '行ってらっしゃい (Itterasshai)',
+        audioLink: 'unknown'
+    },
+    10: {
+        englishText: 'It’s Good',
+        japaneseText: 'いいですよ',
+        audioLink: 'unknown'
+    },
+    11: {
+        englishText: 'It’s Bad',
+        japaneseText: 'だめです',
+        audioLink: 'unknown'
+    },
+    12: {
+        englishText: 'Again, Please.',
+        japaneseText: 'もう一度お願いします (Mou Ichido Onegai Shimasu)',
+        audioLink: 'unknown'
+    },
+    13: {
+        englishText: 'More Slowly, Please',
+        japaneseText: 'ゆっくりお願いします (Yukkuri Onegai Shimasu)',
+        audioLink: 'unknown'
+    },
 };
 const list_length = _.size(list_phrases);
 
