@@ -21,6 +21,7 @@ function setUp() {
     updateCounter();
     document.getElementById('english-text').innerText = list_phrases[all_arrs[current_pile][0]].englishText;
     document.getElementById('japanese-text').innerText = list_phrases[all_arrs[current_pile][0]].japaneseText;
+    document.getElementById('audio-container').src = list_phrases[all_arrs[current_pile][0]].audioLink;
 }
 
 let current_pile = 0;
@@ -35,7 +36,7 @@ const list_phrases =
    2: {
         englishText: 'Long Time, No See!',
         japaneseText: '久しぶり！(Hisashiburi)',
-        audioLink: 'unknown'
+        audioLink: 'nice_weather.mp4'
     },
     3: {
         englishText: 'See You Later',
@@ -147,10 +148,9 @@ function storeInformation(button) {
             current_pile = i;
         }
     }
-        updateCounter();
+        setUp();
         flipCard();
-        document.getElementById('english-text').innerText = list_phrases[all_arrs[current_pile][0]].englishText;
-        document.getElementById('japanese-text').innerText = list_phrases[all_arrs[current_pile][0]].japaneseText;
+
 
     console.log(all_arrs);
 }
