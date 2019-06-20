@@ -21,9 +21,6 @@ function setUp() {
     updateCounter();
     document.getElementById('english-text').innerText = list_phrases[all_arrs[current_pile][0]].englishText;
     document.getElementById('japanese-text').innerText = list_phrases[all_arrs[current_pile][0]].japaneseText;
-    let audio_clip = new Audio(list_phrases[all_arrs[current_pile][0]].audioLink);
-    audio_btn = document.getElementById('audio-container');
-    audio_btn.addEventListener('click', audio_clip.play());
 }
 
 let current_pile = 0;
