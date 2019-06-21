@@ -118,26 +118,6 @@ for (let i = 1; i <= numberOfPhrases; i++) {
 // lowest progress pile which contains a number(s).
 let lowestProgressPile = 0;
 
-const untestedProgressCount = document.getElementById('card-new');
-const badProgressCount = document.getElementById('card-bad');
-const okProgressCount = document.getElementById('card-ok');
-const goodProgressCount = document.getElementById('card-good');
-const excellentProgressCount = document.getElementById('card-excellent');
-
-function updateProgressPileCountsHTML() {
-    untestedProgressCount.innerHTML = phraseProgressPiles[0].length;
-    badProgressCount.innerHTML = phraseProgressPiles[1].length;
-    okProgressCount.innerHTML = phraseProgressPiles[2].length;
-    goodProgressCount.innerHTML = phraseProgressPiles[3].length;
-    excellentProgressCount.innerHTML = phraseProgressPiles[4].length;
-}
-
-// Setting the initial time the page was loaded 
-const timePageLoaded = new Date().getTime();
-// HTML element that displays the time studying 
-const timeElapsedOnPageHTML = document.getElementById('timer-status');
-// Keeping count of time elapsed since pageLoad
-let timeElapsed, minutesElapsed, secondsElapsed;
 
 // Updates HTML with next phrase 
 function updateCurrentPhraseHTML() {
@@ -196,24 +176,10 @@ function progressCheck(buttonPressed) {
         }
     }
         updateCurrentPhraseHTML();
-        updateProgressPileCountsHTML();
         flipCard();
 }
-
-
-var stopwatch = setInterval(function() {
-    timeElapsed = new Date().getTime() - timePageLoaded;
-    timeElapsed = Math.floor(timeElapsed / 1000);
-    minutesElapsed = Math.floor(timeElapsed / 60);
-    secondsElapsed = timeElapsed - (minutesElapsed * 60)
-    if (minutesElapsed > 0)
-        timeElapsedOnPageHTML.innerHTML = minutesElapsed + 'm ' + secondsElapsed + 's'
-    else 
-        timeElapsedOnPageHTML.innerHTML = secondsElapsed + 's';
-}, 1000);
 
 // initalise the phrases and counts
 (function() {
     updateCurrentPhraseHTML();
-    updateProgressPileCountsHTML();
 })();
