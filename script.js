@@ -130,21 +130,45 @@ japanesePhraseContainerHTML = document.getElementById('flash-container-before');
 japanesePhraseContainerHTML.style.visibility = 'visible';
 englishPhraseContainerHTML = document.getElementById('flash-container-after');
 englishPhraseContainerHTML.style.visibility = 'hidden';
+
 flipCardButtonHTML = document.getElementById('btn-flip');
+flipCardButtonHTML.style.visibility = 'visible';
+
+progressButtonsHTML = document.getElementById('btn-progress-container');
+progressButtonsHTML.style.visibility = 'hidden';
+
+
+// pressing the buttons
+btnBadHTML = document.getElementById('btn-bad');
+btnOkHTML = document.getElementById('btn-ok');
+btnGoodHTML = document.getElementById('btn-great');
+btnGreatHTML = document.getElementById('btn-bad');
 
 // Hides/displays front or back of the flashcard when flip is pressed. 
 flipCard = function() {
     if (japanesePhraseContainerHTML.style.visibility === 'visible') {
-        japanesePhraseContainerHTML.style.visibility = 'hidden';}
+        japanesePhraseContainerHTML.style.visibility = 'hidden';
+        flipCardButtonHTML.style.visibility = 'hidden';
+    }
     else {
-        japanesePhraseContainerHTML.style.visibility = 'visible';} 
+        japanesePhraseContainerHTML.style.visibility = 'visible';
+        flipCardButtonHTML.style.visibility = 'visible';
+    } 
 
     if (englishPhraseContainerHTML.style.visibility === 'visible') {
-        englishPhraseContainerHTML.style.visibility = 'hidden';}
+        englishPhraseContainerHTML.style.visibility = 'hidden';
+        progressButtonsHTML.style.visibility = 'hidden';
+    }
     else {
-        englishPhraseContainerHTML.style.visibility = 'visible';} 
+        englishPhraseContainerHTML.style.visibility = 'visible';
+        progressButtonsHTML.style.visibility = 'visible';
+    } 
 };
 flipCardButtonHTML.addEventListener('click', flipCard);
+btnBadHTML.addEventListener('click',flipCard);
+btnOkHTML.addEventListener('click',flipCard);
+btnGoodHTML.addEventListener('click',flipCard);
+btnGreatHTML.addEventListener('click',flipCard);
 
 // Allocate the tested card to its new progressPile, 
 // Update the current phrase HTML
@@ -162,7 +186,7 @@ function progressCheck(buttonPressed) {
     else if (buttonPressed === 'good') {
         phraseProgressPiles[3].push(current);   
     }
-    else if (buttonPressed === 'excellent') {
+    else if (buttonPressed === 'great') {
         phraseProgressPiles[4].push(current);
     }
     if (phraseProgressPiles[4].length === numberOfPhrases)

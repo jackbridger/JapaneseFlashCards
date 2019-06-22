@@ -8,31 +8,35 @@
     <title>Japanese Flashcards</title>
 </head>
 <body>
-    <div id="page-title"> 
-        <h1>20 Japanese Phrases</h1>
-    </div>
+    <div id="page-title">20 Japanese Phrases</div>
 
-    <main class="circle-class">
-        <div class = "card-container" id="flash-container-before">
-            <div id="japanese-text"></div>
-            <audio id="audio-container">
-            </audio>
-        </div>
-        <button id ="btn-flip">FLIP</button>
-        <div class ="card-container" id="flash-container-after">
-            
-            <div id="english-text"></div>
-
-            <div id="btn-container">
-                <button onclick="progressCheck('bad')" id="btn-bad" class="btn">Bad</button>
-                <button onclick="progressCheck('ok')" id="btn-ok" class="btn">OK</button>
-                <button onclick="progressCheck('good')" id="btn-good" class="btn">Good</button>
-                <button onclick="progressCheck('excellent')" id="btn-excellent" class="btn">Excellent</button>
+    <section id="circle-area">
+        <div id="actual-circle">
+            <div class = "card-container" id="flash-container-before">
+                <div class="number"></div>
+                <div id="japanese-text"></div>
+                <audio class="audio-container"></audio>
             </div>
 
+            <div class ="card-container" id="flash-container-after">
+                <div class="number"></div>
+                <div id="english-text"></div>
+                <audio class="audio-container"></audio>
+            </div>
         </div>
-    </main>
+    </section>
 
+    <section id ="button-area">
+        <button id ="btn-flip">FLIP</button>
+        <div id="btn-progress-container">
+            <button onclick="progressCheck('bad')" id="btn-bad" class="btn">Bad</button>
+            <button onclick="progressCheck('ok')" id="btn-ok" class="btn">OK</button>
+            <button onclick="progressCheck('good')" id="btn-good" class="btn">Good</button>
+            <button onclick="progressCheck('great')" id="btn-great" class="btn">Great</button>
+        </div>
+    </section>
+
+    <section id="progress-area"></section>
     <script src="underscore.js"></script>
     <script src="script.js"></script>
     

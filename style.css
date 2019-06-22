@@ -1,8 +1,66 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 body {
     display: grid;
-    grid-template-columns: 10vw 80vw 10vw;
-    grid-template-rows:   10vh 70vh 10vh auto;
+    grid-template-columns: repeat(1fr, 100);
+    grid-template-rows:   repeat(1fr, 100);
     font-family: 'Montserrat', sans-serif;
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+}
+
+#page-title {
+    grid-row-start: 1;
+    grid-row-end: 11;
+    grid-column-start: 1;
+    grid-column-end: 101;
+    border: 2px solid red;
+}
+
+#circle-area {
+    grid-row-start: 15;
+    grid-row-end: 68;
+    grid-column-start: 1;
+    grid-column-end: 101;
+    border: 2px solid blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#actual-circle {
+    height: 80vmin;
+    width: 80vmin;
+    border: 2px solid gold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    flex-direction: column;
+
+}
+#button-area {
+    grid-row-start: 71;
+    grid-row-end: 84;
+    grid-column-start: 1;
+    grid-column-end: 101;
+    border: 2px solid pink;
+}
+#progress-area {
+    grid-row-start: 87;
+    grid-row-end: 101;
+    grid-column-start: 1;
+    grid-column-end: 101;
+    border: 2px solid green;
+}
+
+#btn-flip {
+    background: rgba(255, 20, 20, 0.25);
+    border: 4px solid #000000;
+    box-sizing: border-box;
+    grid-row-start: 71;
+    grid-row-end: 84;
+    grid-column-start: 10;
+    grid-column-end: 91;
 }
