@@ -127,9 +127,9 @@ function updateCurrentPhraseHTML() {
 }
 // HTML elems of front (japanese) and back (english) of the card. And the flip button.
 japanesePhraseContainerHTML = document.getElementById('circle-area__body__front');
-japanesePhraseContainerHTML.style.visibility = 'visible';
+// japanesePhraseContainerHTML.style.visibility = 'visible';
 englishPhraseContainerHTML = document.getElementById('circle-area__body__back');
-englishPhraseContainerHTML.style.visibility = 'hidden';
+// englishPhraseContainerHTML.style.visibility = 'hidden';
 
 flipCardButtonHTML = document.getElementById('btn-flip');
 flipCardButtonHTML.style.visibility = 'visible';

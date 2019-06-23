@@ -39,13 +39,14 @@ body {
     justify-content: center;
     padding: 10px;
     flex-direction: column;
+    position: relative;
+    transform-style: preserve-3d;
 }
 
  .flip-circle {
     transform: rotateY(.5turn);
     transition: transform 3s;
 
-    /* backface-visibility: hidden; */
   }
 
   .unflip-circle {
@@ -54,9 +55,16 @@ body {
   }
 
 #circle-area__body__front, #circle-area__body__back {
+
     position: absolute;
     backface-visibility: hidden;
-    transform-style: preserve-3d;
+    /* transform-style: preserve-3d; */
+    
+}
+
+#circle-area__body__back {
+
+    transform: rotateY(180deg);
     
 }
 
