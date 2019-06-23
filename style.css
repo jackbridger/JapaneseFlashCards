@@ -28,18 +28,33 @@ body {
     align-items: center;
     justify-content: center;
 }
-#actual-circle {
+#circle-area__body {
     height: 80vmin;
     width: 80vmin;
-    border: 2px solid gold;
+    background-color: red;
+    color: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 10px;
     flex-direction: column;
-
 }
+
+ .flip-circle {
+    transform: rotateY(.5turn);
+    transition: transform 3s;
+
+    /* backface-visibility: hidden; */
+  }
+
+#circle-area__body__front, #circle-area__body__back {
+    position: absolute;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    
+}
+
 #button-area {
     grid-row-start: 71;
     grid-row-end: 84;
