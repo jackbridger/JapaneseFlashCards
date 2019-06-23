@@ -167,10 +167,6 @@ flipCard = function() {
 };
 flipCardButtonHTML.addEventListener('click', flipCard);
 
-btnBadHTML.addEventListener('click',flipCard);
-btnOkHTML.addEventListener('click',flipCard);
-btnGoodHTML.addEventListener('click',flipCard);
-btnGreatHTML.addEventListener('click',flipCard);
 
 // Allocate the tested card to its new progressPile, 
 // Update the current phrase HTML
@@ -201,8 +197,11 @@ function progressCheck(buttonPressed) {
             lowestProgressPile = i;
         }
     }
-        updateCurrentPhraseHTML();
+
+        
         flipCard();
+        setTimeout(function() {updateCurrentPhraseHTML();}, 750);
+        
 }
 
 
