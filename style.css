@@ -48,6 +48,11 @@ body {
     /* backface-visibility: hidden; */
   }
 
+  .unflip-circle {
+    transform: rotateY(1turn);
+    transition: transform 3s;
+  }
+
 #circle-area__body__front, #circle-area__body__back {
     position: absolute;
     backface-visibility: hidden;

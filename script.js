@@ -105,7 +105,7 @@ const phraseJSON =
 };
 // The number of phrases in the JSON
 const numberOfPhrases = _.size(phraseJSON);
-
+let front = true;
 // We use these arrays to record how well the user has learned each phrase. 
 // The numbers stored in the arrays keys which map to each phrase in JSON object. 
 // Initally, all phrases are in the first array - the untested array. 
@@ -148,8 +148,16 @@ let circle = document.getElementById('circle-area__body');
 
 // Hides/displays front or back of the flashcard when flip is pressed. 
 flipCard = function() {
-    circle.classList.add('flip-circle');
-
+    if (front) {
+        circle.classList.add('flip-circle');
+        circle.classList.remove('unflip-circle');
+        front = false;
+    }
+    else {
+        circle.classList.remove('flip-circle');
+        circle.classList.add('unflip-circle');
+        front = true;
+    }
     // if (japanesePhraseContainerHTML.style.visibility === 'visible') {
     //     japanesePhraseContainerHTML.style.visibility = 'hidden';
     //     flipCardButtonHTML.style.visibility = 'hidden';
