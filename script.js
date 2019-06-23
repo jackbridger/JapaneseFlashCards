@@ -105,7 +105,7 @@ const phraseJSON =
 };
 // The number of phrases in the JSON
 const numberOfPhrases = _.size(phraseJSON);
-let front = true;
+let frontJapaneseCardVisible = true;
 // We use these arrays to record how well the user has learned each phrase. 
 // The numbers stored in the arrays keys which map to each phrase in JSON object. 
 // Initally, all phrases are in the first array - the untested array. 
@@ -126,17 +126,18 @@ function updateCurrentPhraseHTML() {
     document.getElementById('audio-container').src = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].audioLink;
 }
 // HTML elems of front (japanese) and back (english) of the card. And the flip button.
-japanesePhraseContainerHTML = document.getElementById('circle-area__body__front');
+let japanesePhraseContainerHTML = document.getElementById('circle-area__body__front');
 // japanesePhraseContainerHTML.style.visibility = 'visible';
-englishPhraseContainerHTML = document.getElementById('circle-area__body__back');
+let englishPhraseContainerHTML = document.getElementById('circle-area__body__back');
 // englishPhraseContainerHTML.style.visibility = 'hidden';
 
-flipCardButtonHTML = document.getElementById('btn-flip');
+let flipCardButtonHTML = document.getElementById('btn-flip');
 flipCardButtonHTML.style.visibility = 'visible';
 
-progressButtonsHTML = document.getElementById('btn-progress-container');
+let progressButtonsHTML = document.getElementById('btn-progress-container');
 progressButtonsHTML.style.visibility = 'hidden';
 
+let circleContainerHTML = document.getElementById('circle-area__body');
 
 // pressing the buttons
 btnBadHTML = document.getElementById('btn-bad');
@@ -144,39 +145,28 @@ btnOkHTML = document.getElementById('btn-ok');
 btnGoodHTML = document.getElementById('btn-good');
 btnGreatHTML = document.getElementById('btn-great');
 
-let circle = document.getElementById('circle-area__body');
+
 
 // Hides/displays front or back of the flashcard when flip is pressed. 
 flipCard = function() {
-    if (front) {
-        circle.classList.add('flip-circle');
-        circle.classList.remove('unflip-circle');
-        front = false;
+    if (frontJapaneseCardVisible) {
+        circleContainerHTML.classList.add('flip-circle');
+        circleContainerHTML.classList.remove('unflip-circle');
+        flipCardButtonHTML.style.visibility = 'hidden';
+        progressButtonsHTML.style.visibility = 'visible';
+
+        frontJapaneseCardVisible = false;
     }
     else {
-        circle.classList.remove('flip-circle');
-        circle.classList.add('unflip-circle');
-        front = true;
+        circleContainerHTML.classList.remove('flip-circle');
+        circleContainerHTML.classList.add('unflip-circle');
+        progressButtonsHTML.style.visibility = 'hidden';
+        flipCardButtonHTML.style.visibility = 'visible';
+        frontJapaneseCardVisible = true;
     }
-    // if (japanesePhraseContainerHTML.style.visibility === 'visible') {
-    //     japanesePhraseContainerHTML.style.visibility = 'hidden';
-    //     flipCardButtonHTML.style.visibility = 'hidden';
-    // }
-    // else {
-    //     japanesePhraseContainerHTML.style.visibility = 'visible';
-    //     flipCardButtonHTML.style.visibility = 'visible';
-    // } 
-
-    // if (englishPhraseContainerHTML.style.visibility === 'visible') {
-    //     englishPhraseContainerHTML.style.visibility = 'hidden';
-    //     progressButtonsHTML.style.visibility = 'hidden';
-    // }
-    // else {
-    //     englishPhraseContainerHTML.style.visibility = 'visible';
-    //     progressButtonsHTML.style.visibility = 'visible';
-    // } 
 };
 flipCardButtonHTML.addEventListener('click', flipCard);
+
 btnBadHTML.addEventListener('click',flipCard);
 btnOkHTML.addEventListener('click',flipCard);
 btnGoodHTML.addEventListener('click',flipCard);

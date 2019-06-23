@@ -46,7 +46,6 @@ body {
  .flip-circle {
     transform: rotateY(.5turn);
     transition: transform 3s;
-
   }
 
   .unflip-circle {
@@ -58,8 +57,6 @@ body {
 
     position: absolute;
     backface-visibility: hidden;
-    /* transform-style: preserve-3d; */
-    
 }
 
 #circle-area__body__back {
