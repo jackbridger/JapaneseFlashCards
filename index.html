@@ -8,17 +8,20 @@
     <title>Japanese Flashcards</title>
 </head>
 <body>
-    <div id="page-title">20 Japanese Phrases</div>
+    <div id="page-title">
+        <h1>20 Japanese Phrases</h1>
+    </div>
 
     <section id="circle-area">
         <div id="circle-area__body">
             <div id="circle-area__body__front">
-                <div class="number"></div>
+                <div class="number">01</div>
                 <div id="japanese-text">Japanese One</div>
+                <img src="volume.png" alt="">
                 <audio class="audio-container"></audio>
             </div>
             <div id="circle-area__body__back">
-                <div class="number"></div>
+                <div class="number">01</div>
                 <div id="english-text">English One</div>
                 <audio class="audio-container"></audio>
             </div>
@@ -28,7 +31,7 @@
     <section id ="button-area">
         <button id ="btn-flip">FLIP</button>
         <div id="btn-progress-container">
-        <button  id="btn-bad" class="btn" onclick="progressCheck('bad')">Bad</button>
+            <button  id="btn-bad" class="btn" onclick="progressCheck('bad')">Bad</button>
             <button id="btn-ok" class="btn" onclick="progressCheck('ok')">OK</button>
             <button  id="btn-good" class="btn" onclick="progressCheck('good')">Good</button>
             <button  id="btn-great" class="btn" onclick="progressCheck('excellent')">Great</button>

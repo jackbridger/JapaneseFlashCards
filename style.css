@@ -11,11 +11,27 @@ body {
 }
 
 #page-title {
-    grid-row-start: 1;
-    grid-row-end: 11;
+    grid-row-start: 4;
+    grid-row-end: 8;
     grid-column-start: 1;
     grid-column-end: 101;
-    border: 2px solid red;
+    color:white;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 2vh;
+    border-top: blue 2px solid;
+    border-bottom: blue 2px solid;
+}
+#page-title h1 {
+    background-color: blue;
+    width: 100%;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    padding-top: 0.5vh;
+    padding-bottom: 0.5vh;
 }
 
 #circle-area {
@@ -62,7 +78,20 @@ body {
 #circle-area__body__back {
 
     transform: rotateY(180deg);
+    text-align: center;
     
+}
+
+#circle-area__body__front {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: space-around;    
+}
+#japanese-text, #english-text {
+    font-size: 4vh;
 }
 
 #button-area {
@@ -71,6 +100,9 @@ body {
     grid-column-start: 1;
     grid-column-end: 101;
     border: 2px solid pink;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 #progress-area {
     grid-row-start: 87;
@@ -78,14 +110,21 @@ body {
     grid-column-start: 1;
     grid-column-end: 101;
     border: 2px solid green;
-}
 
+}
+#btn-progress-container {
+    position: absolute;
+}
 #btn-flip {
-    background: rgba(255, 20, 20, 0.25);
-    border: 4px solid #000000;
-    box-sizing: border-box;
     grid-row-start: 71;
     grid-row-end: 84;
     grid-column-start: 10;
     grid-column-end: 91;
+    position: absolute;
+
+}
+button    {
+
+ background: rgba(255, 20, 20, 0.25);
+border: 4px solid #000000;
 }
