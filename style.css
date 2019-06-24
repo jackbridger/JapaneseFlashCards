@@ -48,18 +48,13 @@ body {
 #circle-area__body {
     height: 80vmin;
     width: 80vmin;
-    background-color: red;
     color: black;
-    border-radius: 50%;
     padding: 10px;
     transform-style: preserve-3d;
     -webkit-transform-style: preserve-3d;
     position: relative;
     border: green 5px dotted;
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
  .flip-circle {
@@ -75,8 +70,15 @@ body {
   }
 
 #circle-area__body__front, #circle-area__body__back {
+    align-items: center;
+    background-color: red;
     border: 1px black solid;
+    border-radius: 50%;
+    display: flex;
+    height: 100%;
+    justify-content: center;
     position: absolute;
+    width: 100%;
 
 
     backface-visibility: hidden; 
