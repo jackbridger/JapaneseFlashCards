@@ -138,6 +138,8 @@ let progressButtonsHTML = document.getElementById('btn-progress-container');
 progressButtonsHTML.style.visibility = 'hidden';
 
 let circleContainerHTML = document.getElementById('circle-area__body');
+// let circleContainerFrontHTML = document.getElementById('circle-area__front');
+// let circleContainerFrontHTML = document.getElementById('circle-area__back');
 
 // pressing the buttons
 btnBadHTML = document.getElementById('btn-bad');
@@ -152,8 +154,11 @@ flipCard = function() {
     if (frontJapaneseCardVisible) {
         circleContainerHTML.classList.add('flip-circle');
         circleContainerHTML.classList.remove('unflip-circle');
+        
         flipCardButtonHTML.style.visibility = 'hidden';
         progressButtonsHTML.style.visibility = 'visible';
+        // circleContainerFrontHTML.style.zIndex = 1;
+
 
         frontJapaneseCardVisible = false;
     }
@@ -163,6 +168,7 @@ flipCard = function() {
         progressButtonsHTML.style.visibility = 'hidden';
         flipCardButtonHTML.style.visibility = 'visible';
         frontJapaneseCardVisible = true;
+
     }
 };
 flipCardButtonHTML.addEventListener('click', flipCard);
