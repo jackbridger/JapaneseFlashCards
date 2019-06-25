@@ -73,11 +73,11 @@ body {
   }
 
 #circle-area__body__front, #circle-area__body__back {
-    align-items: center;
+    
     background-color: red;
     border: 1px black solid;
     border-radius: 50%;
-    display: flex;
+
     height: 100%;
     position: absolute;
     margin-left: auto;
@@ -90,6 +90,9 @@ body {
     bottom: 0;
     width: 100%;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     backface-visibility: hidden; 
     -webkit-backface-visibility: hidden;
