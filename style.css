@@ -49,7 +49,7 @@ body {
 #circle-area__body {
     height: 80vmin;
     width: 80vmin;
-    color: black;
+    color: white;
     padding: 10px;
     transform-style: preserve-3d;
     -webkit-transform-style: preserve-3d;
@@ -101,9 +101,11 @@ body {
 
     transform: rotateY(180deg);
     -webkit-transform: rotateY(180deg);
-    
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: -webkit-center;
+    text-align: center;
     
 }
 
@@ -113,12 +115,14 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: -webkit-center;
-    text-align: center;
-
-    justify-content: space-around;    
+    text-align: center;  
 }
 #japanese-text, #english-text {
     font-size: 4vh;
+    padding: 5vmin;
+}
+#japanese-number, #english-number {
+    padding-bottom: 3vh;
 }
 
 #button-area {
@@ -148,10 +152,16 @@ body {
     grid-column-start: 10;
     grid-column-end: 91;
     position: absolute;
+    height: 15vmin;
+    width: 80vmin;
 
 }
 button    {
 
  background: rgba(255, 20, 20, 0.25);
 border: 4px solid #000000;
+}
+#btn-progress-container button {
+    height: 15vmin;
+    width: 19vmin;
 }
