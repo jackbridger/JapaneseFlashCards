@@ -16,13 +16,13 @@ const phraseJSON =
     3: {
         englishText: 'See You Later',
         japaneseText: 'じゃまた',
-        audioLink: 'unknown',
+        audioLink: 'nice_weather.mp4',
         cardNumber: '03.'
     },
     4: {
         englishText: 'Seriously?',
         japaneseText: 'マジで',
-        audioLink: 'unknown',
+        audioLink: 'nice_weather.mp4',
         cardNumber: '04.'
     },
     5: {
@@ -143,16 +143,27 @@ let audioFile;
 function updateCurrentPhraseHTML() {
     document.getElementById('english-text').innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].englishText;
     document.getElementById('japanese-text').innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].japaneseText;
-    // document.getElementById('audio-container').src = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].audioLink;
     document.getElementById('english-number').innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].cardNumber;
     document.getElementById('japanese-number').innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].cardNumber;
+    
     audioFile = new Audio(phraseJSON[phraseProgressPiles[lowestProgressPile][0]].audioLink);
+
+    var isPlaying = function () {
+        return audioFile
+            && audioFile.currentTime > 0
+            && !audioFile.paused
+            && !audioFile.ended
+            && audioFile.readyState > 2;
+    }
+
     document.getElementById('audio-link').addEventListener('click',function() {
-        if (audioFile.paused) {
-            audioFile.play();}
+        if (isPlaying()) {
+            audioFile.pause();
+            }
         else {
-            audioFile.pause();}
-    } );
+            audioFile.play();}
+    } 
+    );
 }
 // HTML elems of front (japanese) and back (english) of the card. And the flip button.
 let japanesePhraseContainerHTML = document.getElementById('circle-area__body__front');
