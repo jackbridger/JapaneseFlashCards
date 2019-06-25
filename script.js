@@ -137,7 +137,7 @@ for (let i = 1; i <= numberOfPhrases; i++) {
 // Initially, we go through the untested set of cards. This value corresponds to the 
 // lowest progress pile which contains a number(s).
 let lowestProgressPile = 0;
-
+let audioFile;
 
 // Updates HTML with next phrase 
 function updateCurrentPhraseHTML() {
@@ -146,7 +146,7 @@ function updateCurrentPhraseHTML() {
     // document.getElementById('audio-container').src = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].audioLink;
     document.getElementById('english-number').innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].cardNumber;
     document.getElementById('japanese-number').innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].cardNumber;
-    let audioFile = new Audio(phraseJSON[phraseProgressPiles[lowestProgressPile][0]].audioLink);
+    audioFile = new Audio(phraseJSON[phraseProgressPiles[lowestProgressPile][0]].audioLink);
     document.getElementById('audio-link').addEventListener('click',function() {
         if (audioFile.paused) {
             audioFile.play();}
@@ -186,8 +186,9 @@ flipCard = function() {
         
         flipCardButtonHTML.style.visibility = 'hidden';
         progressButtonsHTML.style.visibility = 'visible';
-        // circleContainerFrontHTML.style.zIndex = 1;
-
+        if (!audioFile.paused) {
+            audioFile.pause();
+        }
 
         frontJapaneseCardVisible = false;
     }
