@@ -4,103 +4,123 @@ const phraseJSON =
     1: {
         englishText: 'Good Weather, huh!',
         japaneseText: 'いい天気ですね (Ii Tenki desu ne)',
-        audioLink: 'nice_weather.mp4'
+        audioLink: 'nice_weather.mp4',
+        cardNumber: '01.'
     },
    2: {
         englishText: 'Long Time, No See!',
         japaneseText: '久しぶり！(Hisashiburi)',
-        audioLink: 'nice_weather.mp4'
+        audioLink: 'nice_weather.mp4',
+        cardNumber: '02.'
     },
     3: {
         englishText: 'See You Later',
         japaneseText: 'じゃまた',
-        audioLink: 'unknown'
+        audioLink: 'unknown',
+        cardNumber: '03.'
     },
     4: {
         englishText: 'Seriously?',
         japaneseText: 'マジで',
-        audioLink: 'unknown'
+        audioLink: 'unknown',
+        cardNumber: '04.'
     },
     5: {
         englishText: 'No way!',
         japaneseText: 'うそ!',
-        audioLink: 'unknown'
+        audioLink: 'unknown',
+        cardNumber: '05.'
     },
     6: {
         englishText: 'Please Excuse Me (for Leaving)',
         japaneseText: '失礼します (Shitsurei Shimasu)',
-        audioLink: 'unknown'
+        audioLink: 'unknown',
+        cardNumber: '06.'
     },
     7: {
         englishText: 'You Must Be Tired or Thanks for Your Hard Work',
         japaneseText: 'お疲れ様でした (Otsukaresama Deshita)',
-        audioLink: 'unknown'
+        audioLink: 'unknown',
+        cardNumber: '07.'
     }
     ,    
     8: {
         englishText: 'Do you understand?',
         japaneseText: 'わかりますか ',
-        audioLink: 'unknown'
+        audioLink: 'unknown',
+        cardNumber: '08.'
     },
     9: {
         englishText: 'What is _ in Japanese?',
         japaneseText: '日本語で_は何ですか (Nihongo de _ wa Nan desu ka?)',
-        audioLink: 'unknown'
+        audioLink: 'unknown',
+        cardNumber: '09.'
     },
     10: {
         englishText: 'It’s Good',
         japaneseText: 'いいですよ',
-        audioLink: 'unknown'
+        audioLink: 'unknown',
+        cardNumber: '10.'
     },
     11: {
         englishText: 'It’s Bad',
         japaneseText: 'だめです',
-        audioLink: 'unknown'
+        audioLink: 'unknown',
+        cardNumber: '11.'
     },
     12: {
         englishText: 'Again, Please.',
         japaneseText: 'もう一度お願いします (Mou Ichido Onegai Shimasu)',
-        audioLink: 'unknown'
+        audioLink: 'unknown',
+        cardNumber: '12.'
     },
     13: {
         englishText: 'More Slowly, Please',
         japaneseText: 'ゆっくりお願いします (Yukkuri Onegai Shimasu)',
-        audioLink: 'unknown'
+        audioLink: 'unknown',
+        cardNumber: '13.'
     },
     14: {
         englishText: 'I Speak a Little Japanese',
         japaneseText: '少し日本語を話します (Sukoshi Nihongo wo Hanashimasu)',
-        audioLink: 'unknown'
+        audioLink: 'unknown',
+        cardNumber: '14.'
     },
     15: {
         englishText: 'Let’s Meet Again!',
         japaneseText: 'また会いましょう (Mata Aimashou)',
-        audioLink: 'unknown'
+        audioLink: 'unknown',
+        cardNumber: '15.'
     },
     16: {
         englishText: 'Where is the bathroom?',
         japaneseText: 'お手洗いはどこですか (Otearai wa doko desu ka)',
-        audioLink: 'unknown'
+        audioLink: 'unknown',
+        cardNumber: '16.'
     },
     17: {
         englishText: 'Do you use line?',
         japaneseText: 'Line を利用しますか (Line wo Riyou Shimasu ka)',
-        audioLink: 'unknown'
+        audioLink: 'unknown',
+        cardNumber: '17.'
     },
     18: {
         englishText: 'What happened?',
         japaneseText: 'どうしたんだ',
-        audioLink: 'unknown'
+        audioLink: 'unknown',
+        cardNumber: '18.'
     },
     19: {
         englishText: 'Can you speak English?',
         japaneseText: '英語を話せますか (Eigo wo Hanasemasu ka:)',
-        audioLink: 'unknown'
+        audioLink: 'unknown',
+        cardNumber: '19.'
     },
     20: {
         englishText: 'When Can We Meet?',
         japaneseText: 'いつは会えますか (Itsu wa Aemasu ka)',
-        audioLink: 'unknown'
+        audioLink: 'unknown',
+        cardNumber: '20.'
     }
 };
 // The number of phrases in the JSON
@@ -123,7 +143,10 @@ let lowestProgressPile = 0;
 function updateCurrentPhraseHTML() {
     document.getElementById('english-text').innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].englishText;
     document.getElementById('japanese-text').innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].japaneseText;
-    document.getElementById('audio-container').src = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].audioLink;
+    // document.getElementById('audio-container').src = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].audioLink;
+    document.getElementById('english-number').innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].cardNumber;
+    document.getElementById('japanese-number').innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].cardNumber;
+
 }
 // HTML elems of front (japanese) and back (english) of the card. And the flip button.
 let japanesePhraseContainerHTML = document.getElementById('circle-area__body__front');
