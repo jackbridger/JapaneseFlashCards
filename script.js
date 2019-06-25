@@ -146,7 +146,10 @@ function updateCurrentPhraseHTML() {
     // document.getElementById('audio-container').src = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].audioLink;
     document.getElementById('english-number').innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].cardNumber;
     document.getElementById('japanese-number').innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].cardNumber;
-
+    let audioFile = new Audio(phraseJSON[phraseProgressPiles[lowestProgressPile][0]].audioLink);
+    document.getElementById('audio-link').addEventListener('click',function() {
+        audioFile.play();
+    } );
 }
 // HTML elems of front (japanese) and back (english) of the card. And the flip button.
 let japanesePhraseContainerHTML = document.getElementById('circle-area__body__front');
