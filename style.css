@@ -39,7 +39,7 @@ body {
     grid-row-end: 68;
     grid-column-start: 1;
     grid-column-end: 101;
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     display: flex;
     align-items: center;
     align-content: center;
@@ -54,7 +54,6 @@ body {
     transform-style: preserve-3d;
     -webkit-transform-style: preserve-3d;
     position: relative;
-    border: green 5px dotted;
     flex-direction: column;
     /* align-content: center; */
     /* justify-content: center; */
@@ -75,7 +74,7 @@ body {
 #circle-area__body__front, #circle-area__body__back {
     
     background-color: red;
-    border: 1px black solid;
+    /* border: 1px black solid; */
     border-radius: 50%;
 
     height: 100%;
@@ -127,7 +126,7 @@ body {
     grid-row-end: 84;
     grid-column-start: 1;
     grid-column-end: 101;
-    border: 2px solid pink;
+    /* border: 2px solid pink; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -137,7 +136,7 @@ body {
     grid-row-end: 101;
     grid-column-start: 1;
     grid-column-end: 101;
-    border: 2px solid green;
+    /* border: 2px solid green; */
 
 }
 #btn-progress-container {
