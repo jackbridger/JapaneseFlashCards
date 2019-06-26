@@ -118,11 +118,11 @@ body {
 }
 
 #japanese-text, #english-text {
-    font-size: 4vh;
-    padding: 5vmin;
+    font-size: 3.5vh;
+    padding: 2vmin;
 }
 #japanese-number, #english-number {
-    padding-bottom: 3vh;
+    padding-bottom: 1vh;
     font-size: 3.5vh;
 }
 
