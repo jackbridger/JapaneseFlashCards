@@ -200,6 +200,8 @@ flipCard = function() {
         circleContainerHTML.classList.add('flip-circle');
         circleContainerHTML.classList.remove('unflip-circle');
         
+        
+
         flipCardButtonHTML.style.visibility = 'hidden';
         progressButtonsHTML.style.visibility = 'visible';
         if (!japaneseAudioRecording.paused) {
@@ -207,6 +209,8 @@ flipCard = function() {
         }
 
         frontJapaneseCardVisible = false;
+
+
     }
     else {
         circleContainerHTML.classList.remove('flip-circle');
@@ -215,7 +219,19 @@ flipCard = function() {
         flipCardButtonHTML.style.visibility = 'visible';
         frontJapaneseCardVisible = true;
 
+        
     }
+    japanesePhraseContainerHTML.classList.add('flip-shadow');
+    englishPhraseContainerHTML.classList.add('flip-shadow');
+    englishPhraseContainerHTML.classList.remove('flip-unshadow');
+    japanesePhraseContainerHTML.classList.remove('flip-unshadow');
+
+    setTimeout(() => {
+        englishPhraseContainerHTML.classList.remove('flip-shadow');
+        japanesePhraseContainerHTML.classList.remove('flip-shadow');
+        japanesePhraseContainerHTML.classList.add('flip-unshadow');
+        englishPhraseContainerHTML.classList.add('flip-unshadow');
+    }, 1500);
 };
 flipCardButtonHTML.addEventListener('click', flipCard);
 
