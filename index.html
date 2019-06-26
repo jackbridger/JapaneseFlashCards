@@ -8,7 +8,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="japanesefavicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="japanesefavicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="japanesefavicon/favicon-16x16.png">
-    <title>Japanese Flashcards</title>
+    <title>20 Japanese Phrases</title>
 </head>
 <body>
     <div id="page-title">
@@ -19,18 +19,17 @@
         <div id="circle-area__body">
             <div id="circle-area__body__front">
                 <div class="content">
-                  <div class = "card-number" id="japanese-number">01</div>
-                  <div id="japanese-text">Japanese One</div>
+                  <div class = "card-number" id="japanese-number"></div>
+                  <div id="japanese-text"></div>
                     <a id="audio-link">
                         <img src="volume.png" alt="">
                     </a>
-                  <!-- <img src="volume.png" alt=""> -->
                 </div>
             </div>
             <div id="circle-area__body__back">
                 <div class="content">
-                  <div class = "card-number" id="english-number">01</div>
-                  <div id="english-text">English One</div>
+                  <div class = "card-number" id="english-number"></div>
+                  <div id="english-text"></div>
                 </div>
             </div>
         </div>
@@ -42,11 +41,16 @@
             <button  id="btn-bad" class="btn" onclick="progressCheck('bad')">Bad</button>
             <button id="btn-ok" class="btn" onclick="progressCheck('ok')">OK</button>
             <button  id="btn-good" class="btn" onclick="progressCheck('good')">Good</button>
-            <button  id="btn-great" class="btn" onclick="progressCheck('excellent')">Great</button>
+            <button  id="btn-great" class="btn" onclick="progressCheck('great')">Great</button>
         </div>
     </section>
 
-    <section id="progress-area"></section>
+    <section id="progress-area">
+        <div id="progress-bar-container">
+            <div id="progress-bar"></div>
+        </div>
+
+    </section>
     <script src="underscore.js"></script>
     <script src="script.js"></script>
 </body>

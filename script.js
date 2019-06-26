@@ -163,9 +163,12 @@ function updateCurrentPhraseAndAudioHTML() {
             japaneseAudioRecording.pause();
             }
         else {
-            japaneseAudioRecording.play();}
+            japaneseAudioRecording.play();
+        }
     } 
     );
+    document.getElementById('progress-bar').style.width = calculateProgressNumber() + '%';
+
 }
 // HTML elems of front (japanese) and back (english) of the card. And the flip button.
 let japanesePhraseContainerHTML = document.getElementById('circle-area__body__front');
@@ -253,6 +256,16 @@ function progressCheck(buttonPressed) {
         
 }
 
+function calculateProgressNumber() {
+    let progressPercent = 0;
+    let pointsEarned = 0;
+    let totalPointsAvailable = 4 * numberOfPhrases;
+    for (let i = 1; i < phraseProgressPiles.length; i++ ) {
+        pointsEarned += phraseProgressPiles[i].length * i
+    }
+    progressPercent = (pointsEarned / totalPointsAvailable) * 100;
+    return progressPercent;
+}
 
 
 // initalise the phrases and counts
