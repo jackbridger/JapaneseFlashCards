@@ -3,13 +3,13 @@ const phraseJSON =
 {
     1: {
         englishText: 'Good Weather, huh!',
-        japaneseText: 'いい天気ですね (Ii Tenki desu ne)',
+        japaneseText: '今日もいい天気ですね \n \n(Kyōmoītenkidesu ne)',
         audioLink: 'japanese_audio/nice_weather.mp4',
         cardNumber: '01.'
     },
    2: {
         englishText: 'Long Time, No See!',
-        japaneseText: '久しぶり！(Hisashiburi)',
+        japaneseText: '久しぶり！\n \n (Hisashiburi)',
         audioLink: 'japanese_audio/久しぶり.mp3',
         cardNumber: '02.'
     },
@@ -33,13 +33,13 @@ const phraseJSON =
     },
     6: {
         englishText: 'Please Excuse Me (for Leaving)',
-        japaneseText: '失礼します (Shitsurei Shimasu)',
+        japaneseText: '失礼します \n \n (Shitsurei Shimasu)',
         audioLink: 'japanese_audio/失礼します.mp3',
         cardNumber: '06.'
     },
     7: {
         englishText: 'You Must Be Tired or Thanks for Your Hard Work',
-        japaneseText: 'お疲れ様でした (Otsukaresama Deshita)',
+        japaneseText: 'お疲れ様でした \n \n (Otsukaresama Deshita)',
         audioLink: 'japanese_audio/お疲れ様でした.mp3',
         cardNumber: '07.'
     }
@@ -52,7 +52,7 @@ const phraseJSON =
     },
     9: {
         englishText: 'What is _ in Japanese?',
-        japaneseText: '日本語で_は何ですか (Nihongo de _ wa Nan desu ka?)',
+        japaneseText: '日本語で_は何ですか \n \n(Nihongo de _ wa Nan desu ka?)',
         audioLink: 'japanese_audio/日本語では何ですか.mp3',
         cardNumber: '09.'
     },
@@ -70,37 +70,37 @@ const phraseJSON =
     },
     12: {
         englishText: 'Again, Please.',
-        japaneseText: 'もう一度お願いします (Mou Ichido Onegai Shimasu)',
+        japaneseText: 'もう一度お願いします \n \n (Mou Ichido Onegai Shimasu)',
         audioLink: 'japanese_audio/もう一度お願いします.mp3',
         cardNumber: '12.'
     },
     13: {
         englishText: 'More Slowly, Please',
-        japaneseText: 'ゆっくりお願いします (Yukkuri Onegai Shimasu)',
+        japaneseText: 'ゆっくりお願いします \n \n(Yukkuri Onegai Shimasu)',
         audioLink: 'japanese_audio/ゆっくりお願いします.mp3',
         cardNumber: '13.'
     },
     14: {
         englishText: 'I Speak a Little Japanese',
-        japaneseText: '少し日本語を話します (Sukoshi Nihongo wo Hanashimasu)',
+        japaneseText: '少し日本語を話します \n \n(Sukoshi Nihongo wo Hanashimasu)',
         audioLink: 'japanese_audio/少し日本語を話します.mp3',
         cardNumber: '14.'
     },
     15: {
         englishText: 'Let’s Meet Again!',
-        japaneseText: 'また会いましょう (Mata Aimashou)',
+        japaneseText: 'また会いましょう \n \n(Mata Aimashou)',
         audioLink: 'japanese_audio/また会いましょう.mp3',
         cardNumber: '15.'
     },
     16: {
         englishText: 'Where is the bathroom?',
-        japaneseText: 'お手洗いはどこですか (Otearai wa doko desu ka)',
+        japaneseText: 'お手洗いはどこですか \n \n(Otearai wa doko desu ka)',
         audioLink: 'japanese_audio/お手洗いはどこですか.mp3',
         cardNumber: '16.'
     },
     17: {
         englishText: 'Do you use line?',
-        japaneseText: 'Line を利用しますか (Line wo Riyou Shimasu ka)',
+        japaneseText: 'Line を利用しますか \n \n(Line wo Riyou Shimasu ka)',
         audioLink: 'japanese_audio/Line を利用しますか.mp3',
         cardNumber: '17.'
     },
@@ -112,13 +112,13 @@ const phraseJSON =
     },
     19: {
         englishText: 'Can you speak English?',
-        japaneseText: '英語を話せますか (Eigo wo Hanasemasu ka:)',
+        japaneseText: '英語を話せますか \n \n(Eigo wo Hanasemasu ka:)',
         audioLink: 'japanese_audio/英語を話せますか .mp3',
         cardNumber: '19.'
     },
     20: {
         englishText: 'When Can We Meet?',
-        japaneseText: 'いつは会えますか (Itsu wa Aemasu ka)',
+        japaneseText: 'いつは会えますか \n \n(Itsu wa Aemasu ka)',
         audioLink: 'japanese_audio/いつは会えますか.mp3',
         cardNumber: '20.'
     }
