@@ -50,8 +50,8 @@ body {
 
 }
 #circle-area__body {
-    height: 60vmin;
-    width: 60vmin;
+    height: 70vmin;
+    width: 70vmin;
     color: white;
     padding: 10px;
     transform-style: preserve-3d;
