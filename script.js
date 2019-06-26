@@ -4,122 +4,122 @@ const phraseJSON =
     1: {
         englishText: 'Good Weather, huh!',
         japaneseText: 'いい天気ですね (Ii Tenki desu ne)',
-        audioLink: 'nice_weather.mp4',
+        audioLink: 'japanese_audio/nice_weather.mp4',
         cardNumber: '01.'
     },
    2: {
         englishText: 'Long Time, No See!',
         japaneseText: '久しぶり！(Hisashiburi)',
-        audioLink: 'nice_weather.mp4',
+        audioLink: 'japanese_audio/久しぶり.mp3',
         cardNumber: '02.'
     },
     3: {
         englishText: 'See You Later',
         japaneseText: 'じゃまた',
-        audioLink: 'nice_weather.mp4',
+        audioLink: 'japanese_audio/じゃまた.mp3',
         cardNumber: '03.'
     },
     4: {
         englishText: 'Seriously?',
         japaneseText: 'マジで',
-        audioLink: 'nice_weather.mp4',
+        audioLink: 'japanese_audio/マジで.mp3',
         cardNumber: '04.'
     },
     5: {
         englishText: 'No way!',
         japaneseText: 'うそ!',
-        audioLink: 'unknown',
+        audioLink: 'japanese_audio/うそ!.mp3',
         cardNumber: '05.'
     },
     6: {
         englishText: 'Please Excuse Me (for Leaving)',
         japaneseText: '失礼します (Shitsurei Shimasu)',
-        audioLink: 'unknown',
+        audioLink: 'japanese_audio/失礼します.mp3',
         cardNumber: '06.'
     },
     7: {
         englishText: 'You Must Be Tired or Thanks for Your Hard Work',
         japaneseText: 'お疲れ様でした (Otsukaresama Deshita)',
-        audioLink: 'unknown',
+        audioLink: 'japanese_audio/お疲れ様でした.mp3',
         cardNumber: '07.'
     }
     ,    
     8: {
         englishText: 'Do you understand?',
         japaneseText: 'わかりますか ',
-        audioLink: 'unknown',
+        audioLink: 'japanese_audio/わかりますか.mp3',
         cardNumber: '08.'
     },
     9: {
         englishText: 'What is _ in Japanese?',
         japaneseText: '日本語で_は何ですか (Nihongo de _ wa Nan desu ka?)',
-        audioLink: 'unknown',
+        audioLink: 'japanese_audio/日本語では何ですか.mp3',
         cardNumber: '09.'
     },
     10: {
         englishText: 'It’s Good',
         japaneseText: 'いいですよ',
-        audioLink: 'unknown',
+        audioLink: 'japanese_audio/いいですよ.mp3',
         cardNumber: '10.'
     },
     11: {
         englishText: 'It’s Bad',
         japaneseText: 'だめです',
-        audioLink: 'unknown',
+        audioLink: 'japanese_audio/だめです.mp3',
         cardNumber: '11.'
     },
     12: {
         englishText: 'Again, Please.',
         japaneseText: 'もう一度お願いします (Mou Ichido Onegai Shimasu)',
-        audioLink: 'unknown',
+        audioLink: 'japanese_audio/もう一度お願いします.mp3',
         cardNumber: '12.'
     },
     13: {
         englishText: 'More Slowly, Please',
         japaneseText: 'ゆっくりお願いします (Yukkuri Onegai Shimasu)',
-        audioLink: 'unknown',
+        audioLink: 'japanese_audio/ゆっくりお願いします.mp3',
         cardNumber: '13.'
     },
     14: {
         englishText: 'I Speak a Little Japanese',
         japaneseText: '少し日本語を話します (Sukoshi Nihongo wo Hanashimasu)',
-        audioLink: 'unknown',
+        audioLink: 'japanese_audio/少し日本語を話します.mp3',
         cardNumber: '14.'
     },
     15: {
         englishText: 'Let’s Meet Again!',
         japaneseText: 'また会いましょう (Mata Aimashou)',
-        audioLink: 'unknown',
+        audioLink: 'japanese_audio/また会いましょう.mp3',
         cardNumber: '15.'
     },
     16: {
         englishText: 'Where is the bathroom?',
         japaneseText: 'お手洗いはどこですか (Otearai wa doko desu ka)',
-        audioLink: 'unknown',
+        audioLink: 'japanese_audio/お手洗いはどこですか.mp3',
         cardNumber: '16.'
     },
     17: {
         englishText: 'Do you use line?',
         japaneseText: 'Line を利用しますか (Line wo Riyou Shimasu ka)',
-        audioLink: 'unknown',
+        audioLink: 'japanese_audio/Line を利用しますか.mp3',
         cardNumber: '17.'
     },
     18: {
         englishText: 'What happened?',
         japaneseText: 'どうしたんだ',
-        audioLink: 'unknown',
+        audioLink: 'japanese_audio/どうしたんだ.mp3',
         cardNumber: '18.'
     },
     19: {
         englishText: 'Can you speak English?',
         japaneseText: '英語を話せますか (Eigo wo Hanasemasu ka:)',
-        audioLink: 'unknown',
+        audioLink: 'japanese_audio/英語を話せますか .mp3',
         cardNumber: '19.'
     },
     20: {
         englishText: 'When Can We Meet?',
         japaneseText: 'いつは会えますか (Itsu wa Aemasu ka)',
-        audioLink: 'unknown',
+        audioLink: 'japanese_audio/いつは会えますか.mp3',
         cardNumber: '20.'
     }
 };
@@ -137,31 +137,33 @@ for (let i = 1; i <= numberOfPhrases; i++) {
 // Initially, we go through the untested set of cards. This value corresponds to the 
 // lowest progress pile which contains a number(s).
 let lowestProgressPile = 0;
-let audioFile;
 
-// Updates HTML with next phrase 
-function updateCurrentPhraseHTML() {
+// Declare the audio so that is global within script.js.
+let japaneseAudioRecording;
+
+// Updates HTML with next phrase and audio. Also adds a click event to play pause audio 
+function updateCurrentPhraseAndAudioHTML() {
     document.getElementById('english-text').innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].englishText;
     document.getElementById('japanese-text').innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].japaneseText;
     document.getElementById('english-number').innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].cardNumber;
     document.getElementById('japanese-number').innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].cardNumber;
     
-    audioFile = new Audio(phraseJSON[phraseProgressPiles[lowestProgressPile][0]].audioLink);
+    japaneseAudioRecording = new Audio(phraseJSON[phraseProgressPiles[lowestProgressPile][0]].audioLink);
 
-    var isPlaying = function () {
-        return audioFile
-            && audioFile.currentTime > 0
-            && !audioFile.paused
-            && !audioFile.ended
-            && audioFile.readyState > 2;
+    var audioIsPlaying = function () {
+        return japaneseAudioRecording
+            && japaneseAudioRecording.currentTime > 0
+            && !japaneseAudioRecording.paused
+            && !japaneseAudioRecording.ended
+            && japaneseAudioRecording.readyState > 2;
     }
 
     document.getElementById('audio-link').addEventListener('click',function() {
-        if (isPlaying()) {
-            audioFile.pause();
+        if (audioIsPlaying()) {
+            japaneseAudioRecording.pause();
             }
         else {
-            audioFile.play();}
+            japaneseAudioRecording.play();}
     } 
     );
 }
@@ -197,8 +199,8 @@ flipCard = function() {
         
         flipCardButtonHTML.style.visibility = 'hidden';
         progressButtonsHTML.style.visibility = 'visible';
-        if (!audioFile.paused) {
-            audioFile.pause();
+        if (!japaneseAudioRecording.paused) {
+            japaneseAudioRecording.pause();
         }
 
         frontJapaneseCardVisible = false;
@@ -247,7 +249,7 @@ function progressCheck(buttonPressed) {
 
         
         flipCard();
-        setTimeout(function() {updateCurrentPhraseHTML();}, 750);
+        setTimeout(function() {updateCurrentPhraseAndAudioHTML();}, 750);
         
 }
 
@@ -255,5 +257,5 @@ function progressCheck(buttonPressed) {
 
 // initalise the phrases and counts
 (function() {
-    updateCurrentPhraseHTML();
+    updateCurrentPhraseAndAudioHTML();
 })();
