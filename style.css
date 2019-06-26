@@ -23,9 +23,10 @@ body {
     text-align: center;
     align-items: center;
     font-weight: bold;
-    font-size: 2vh;
+    font-size: 1.5vh;
     border-top: blue 2px solid;
     border-bottom: blue 2px solid;
+    text-transform: uppercase;
 }
 #page-title h1 {
     background-color: blue;
@@ -49,8 +50,8 @@ body {
 
 }
 #circle-area__body {
-    height: 70vmin;
-    width: 70vmin;
+    height: 60vmin;
+    width: 60vmin;
     color: white;
     padding: 10px;
     transform-style: preserve-3d;
