@@ -167,7 +167,7 @@ function updateCurrentPhraseAndAudioHTML() {
         }
     } 
     );
-    document.getElementById('progress-bar').style.width = calculateProgressNumber() + '%';
+    document.getElementById('progress-bar').style.width = (Math.max(1,calculateProgressNumber())) + '%';
 
 }
 // HTML elems of front (japanese) and back (english) of the card. And the flip button.
