@@ -210,7 +210,6 @@ flipCard = function() {
 
         frontJapaneseCardVisible = false;
 
-
     }
     else {
         circleContainerHTML.classList.remove('flip-circle');
@@ -254,10 +253,9 @@ function progressCheck(buttonPressed) {
     }
     else if (buttonPressed === 'great') {
         phraseProgressPiles[4].push(current);
-    }
-    if (phraseProgressPiles[4].length === numberOfPhrases)
-    {
-        alert('completed everything')
+        if (phraseProgressPiles[4].length === numberOfPhrases) {
+            endCredits();
+        }
     }
     // Find the lowest level of confidence pile
     for (var i = 4; i >= 0; i--) {
@@ -281,6 +279,23 @@ function calculateProgressNumber() {
     }
     progressPercent = (pointsEarned / totalPointsAvailable) * 100;
     return progressPercent;
+}
+
+function endCredits() {
+    document.getElementById('page-title').style.display = 'none';
+    document.getElementById('circle-area').style.display = 'none';
+    document.getElementById('button-area').style.display = 'none';
+    document.getElementById('progress-area').style.display = 'none';
+    document.body.removeAttribute('style');
+
+    endCreditsHTML = document.getElementById('end-credits');
+    endCreditsContainerHTML = document.getElementById('end-credits-container');
+
+    endCreditsContainerHTML.style.display = 'inline';
+
+    document.body.style.backgroundColor = 'black';
+    document.body.style.width = '100%';
+    document.body.style.height = '100%';
 }
 
 

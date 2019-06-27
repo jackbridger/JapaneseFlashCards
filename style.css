@@ -182,3 +182,48 @@ button    {
     background-color: blue;
     width: 1%;
 }
+#end-credits-container {
+    display: none;
+    /* Position the element so we can adjust the top property in the animation */
+    position: relative;
+    /* Making sure the text is fully off the screen at the start and end of the animation */
+    /* Defines the skew origin at the very center when we apply transforms on the animation */
+
+    transform-origin: 50% 100%;
+    animation: end-credits-container 60s linear;
+}
+
+#end-credits {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    /* This is a magic number based on the context in which this snippet is used and effects the perspective */
+    height: 800px;
+    /* This sets allows us to transform the text on a 3D plane, and is somewhat a magic number */
+    perspective: 400px;
+    /* The rest is totally up to personal styling preferences */
+    color: #feda4a;
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size: 5vh;
+    font-weight: 600;
+    letter-spacing: 1vh;
+    line-height: 6vh;
+    text-align: justify;
+}
+
+@keyframes end-credits-container {
+    0% {
+      /* The element starts below the screen */
+      top: 60vh;
+      /* Rotate the text 20 degrees but keep it close to the viewer */
+      transform: rotateX(20deg) translateZ(0);
+    }
+    100% { 
+      /* This is a magic number, but using a big one to make sure the text is fully off the screen at the end */
+      top: -6000px;
+      /* Slightly increasing the rotation at the end and moving the text far away from the viewer */
+      transform: rotateX(25deg) translateZ(-2500px);
+    }
+  }
