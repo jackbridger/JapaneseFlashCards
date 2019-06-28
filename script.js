@@ -280,7 +280,7 @@ function calculateProgressNumber() {
     progressPercent = (pointsEarned / totalPointsAvailable) * 100;
     return progressPercent;
 }
-
+// This runs when the user completes 'great' on all words.
 function endCredits() {
     document.getElementById('page-title').style.display = 'none';
     document.getElementById('circle-area').style.display = 'none';
@@ -288,14 +288,14 @@ function endCredits() {
     document.getElementById('progress-area').style.display = 'none';
     document.body.removeAttribute('style');
 
-    endCreditsHTML = document.getElementById('end-credits');
+    let endCreditsHTML = document.getElementById('end-credits');
     endCreditsContainerHTML = document.getElementById('end-credits-container');
-
     endCreditsContainerHTML.style.display = 'inline';
 
-    document.body.style.backgroundColor = 'black';
-    document.body.style.width = '100%';
-    document.body.style.height = '100%';
+    let documentBodyStyle = document.body.style
+    documentBodyStyle.backgroundColor = 'black';
+    documentBodyStyle.width = '100%';
+    documentBodyStyle.height = '100%';
 }
 
 
