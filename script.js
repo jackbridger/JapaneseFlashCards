@@ -1,5 +1,7 @@
+let cardsAndPhrases = {};
+
+cardsAndPhrases.phraseJSON = 
 // The Japanese, English and audio JSON
-const phraseJSON = 
 {
     1: {
         englishText: 'Good Weather, huh!',
@@ -124,14 +126,14 @@ const phraseJSON =
     }
 };
 // The number of phrases in the JSON
-const numberOfPhrases = _.size(phraseJSON);
+cardsAndPhrases.numberOfPhrases = _.size(cardsAndPhrases.phraseJSON);
 let frontJapaneseCardVisible = true;
 // We use these arrays to record how well the user has learned each phrase. 
 // The numbers stored in the arrays keys which map to each phrase in JSON object. 
 // Initally, all phrases are in the first array - the untested array. 
 // The far right right array is where the phrases which are perfected are.
 let phraseProgressPiles = [[],[],[],[],[]];
-for (let i = 1; i <= numberOfPhrases; i++) {
+for (let i = 1; i <= cardsAndPhrases.numberOfPhrases; i++) {
     phraseProgressPiles[0].push(i);
 }
 // Initially, we go through the untested set of cards. This value corresponds to the 
@@ -143,12 +145,12 @@ let japaneseAudioRecording;
 
 // Updates HTML with next phrase and audio. Also adds a click event to play pause audio 
 function updateCurrentPhraseAndAudioHTML() {
-    document.getElementById('english-text').innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].englishText;
-    document.getElementById('japanese-text').innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].japaneseText;
-    document.getElementById('english-number').innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].cardNumber;
-    document.getElementById('japanese-number').innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]].cardNumber;
+    document.getElementById('english-text').innerText = cardsAndPhrases.phraseJSON[phraseProgressPiles[lowestProgressPile][0]].englishText;
+    document.getElementById('japanese-text').innerText = cardsAndPhrases.phraseJSON[phraseProgressPiles[lowestProgressPile][0]].japaneseText;
+    document.getElementById('english-number').innerText = cardsAndPhrases.phraseJSON[phraseProgressPiles[lowestProgressPile][0]].cardNumber;
+    document.getElementById('japanese-number').innerText = cardsAndPhrases.phraseJSON[phraseProgressPiles[lowestProgressPile][0]].cardNumber;
     
-    japaneseAudioRecording = new Audio(phraseJSON[phraseProgressPiles[lowestProgressPile][0]].audioLink);
+    japaneseAudioRecording = new Audio(cardsAndPhrases.phraseJSON[phraseProgressPiles[lowestProgressPile][0]].audioLink);
 
     var audioIsPlaying = function () {
         return japaneseAudioRecording
@@ -191,8 +193,6 @@ btnBadHTML = document.getElementById('btn-bad');
 btnOkHTML = document.getElementById('btn-ok');
 btnGoodHTML = document.getElementById('btn-good');
 btnGreatHTML = document.getElementById('btn-great');
-
-
 
 // Hides/displays front or back of the flashcard when flip is pressed. 
 flipCard = function() {
@@ -253,7 +253,7 @@ function progressCheck(buttonPressed) {
     }
     else if (buttonPressed === 'great') {
         phraseProgressPiles[4].push(current);
-        if (phraseProgressPiles[4].length === numberOfPhrases) {
+        if (phraseProgressPiles[4].length === cardsAndPhrases.numberOfPhrases) {
             endCredits();
         }
     }
@@ -273,7 +273,7 @@ function progressCheck(buttonPressed) {
 function calculateProgressNumber() {
     let progressPercent = 0;
     let pointsEarned = 0;
-    let totalPointsAvailable = 4 * numberOfPhrases;
+    let totalPointsAvailable = 4 * cardsAndPhrases.numberOfPhrases;
     for (let i = 1; i < phraseProgressPiles.length; i++ ) {
         pointsEarned += phraseProgressPiles[i].length * i
     }
