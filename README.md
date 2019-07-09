@@ -1,8 +1,7 @@
 # JapaneseFlashCards
-Users can learn 99 common Japanese phrases, revising those that they struggle with. 
+Users can learn 20 common Japanese phrases, revising those that they struggle with. 
 
-
-As a user, I should be able to say, 1min, 10min, 1 day to show whether I need to see it again
+As a user, I should be able to evaluate how confident I feel on a particular phrase. Difficult phrases should be tested more frequently.
 
 As a user, I should first see the Japanese, then the translation
 
@@ -15,35 +14,6 @@ As a user, I should be able to hear an audio clip of the phrases (from SoundClou
 
 How it works
 
-1) go through the untested. Update stats accordingly.
-2) go through the bad. until no more. Updating stats.
-3) go through ok, good.
-4) When all is excellent. Finished!
-
-
-Card example: 
-
-card_list = [
-    {
-        english-text: 'It’s Good',
-        japanese-text: 'いいですよ',
-        audio-link: <iframe width="100%" height="265" src="https://clyp.it/ifpttjmu/widget" frameborder="0"></iframe>,
-        difficulty-rating: 1,
-        card-order: 1
-    },
-    {
-        english-text: 'It’s Bad',
-        japanese-text: 'だめです',
-        audio-link: <iframe width="100%" height="265" src="https://clyp.it/ifpttjmu/widget" frameborder="0"></iframe>,
-        difficulty-rating: 1,
-        card-order: 1
-    }
-];
-Stats = 
-    {
-        untested-total: 99,
-        bad-total: 0,
-        ok-total: 0,
-        good-total: 0,
-        excellent-total: 0
-    }
+1) go through the untested phrases
+2) go through the 'worst pile' e.g. if you have any phrases in bad you will go through those first.
+2) When all is excellent. Finished!
