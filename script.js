@@ -1,26 +1,9 @@
-let phraseData = {};
-// The number of phrases in the JSON
-
 let frontJapaneseCardVisible = true;
-// We use these arrays to record how well the user has learned each phrase. 
-// The numbers stored in the arrays keys which map to each phrase in JSON object. 
-// Initally, all phrases are in the first array - the untested array. 
-// The far right right array is where the phrases which are perfected are.
 const phraseProgressPiles = [[],[],[],[],[]];
 
 phraseJSON.forEach((phrase, index) => {
     phraseProgressPiles[0].push(index);
 }) 
-
-const toggleVisibility = (goHidden, goVisibile) => {
-    goHidden.style.visibility = 'hidden';
-    goVisibile.style.visibility = 'visible';
-}
-
-const toggleCssClass = (element, removeClass, addClass) => {
-    element.classList.add(addClass);
-    element.classList.remove(removeClass);
-}
 
 // Initially, we go through the untested set of cards. This value corresponds to the 
 // lowest progress pile which contains a number(s).
@@ -31,35 +14,23 @@ let japaneseAudioRecording;
 
 // Updates HTML with next phrase and audio. Also adds a click event to play pause audio 
 const updateCurrentPhraseAndAudioHTML = () => {
-    const elementsToUpdate = {
+    const elementsToUpdateNextCard = {
         'english-text': 'englishText',
         'japanese-text': 'japaneseText',
         'english-number': 'cardNumber',
         'japanese-number': 'cardNumber'
     };
-    const elementsKeys = Object.keys(elementsToUpdate);
+    const elementsKeys = Object.keys(elementsToUpdateNextCard);
 
     elementsKeys.forEach(element => {
-        document.getElementById(element).innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]][elementsToUpdate[element]];
+        document.getElementById(element).innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]][elementsToUpdateNextCard[element]];
     } )
 
     japaneseAudioRecording = new Audio(phraseJSON[phraseProgressPiles[lowestProgressPile][0]].audioLink);
 
-    const audioIsPlaying = () => {
-        return japaneseAudioRecording
-            && japaneseAudioRecording.currentTime > 0
-            && !japaneseAudioRecording.paused
-            && !japaneseAudioRecording.ended
-            && japaneseAudioRecording.readyState > 2;
-    }
 
     document.getElementById('audio-link').addEventListener('click',() => {
-        if (audioIsPlaying()) {
-            japaneseAudioRecording.pause();
-            }
-        else {
-            japaneseAudioRecording.play();
-        }
+        helper.toggleAudio(japaneseAudioRecording);
     } 
     );
     document.getElementById('progress-bar').style.width = (Math.max(1,calculateProgressNumber())) + '%';
@@ -77,7 +48,7 @@ const flipCardButtonHTML = document.getElementById('btn-flip');
 const progressButtonsHTML = document.getElementById('btn-progress-container');
 
 
-toggleVisibility(progressButtonsHTML, flipCardButtonHTML);
+helper.toggleVisibility(progressButtonsHTML, flipCardButtonHTML);
 
 const circleContainerHTML = document.getElementById('circle-area__body');
 
@@ -93,8 +64,8 @@ const btnGreatHTML = document.getElementById('btn-great');
 // Hides/displays front or back of the flashcard when flip is pressed. 
 flipCard = () => {
     if (frontJapaneseCardVisible) {
-        toggleCssClass(circleContainerHTML, 'unflip-circle', 'flip-circle');
-        toggleVisibility(flipCardButtonHTML, progressButtonsHTML);
+        helper.toggleCssClass(circleContainerHTML, 'unflip-circle', 'flip-circle');
+        helper.toggleVisibility(flipCardButtonHTML, progressButtonsHTML);
 
         if (!japaneseAudioRecording.paused) {
             japaneseAudioRecording.pause();
@@ -105,21 +76,21 @@ flipCard = () => {
     }
     else {
 
-        toggleCssClass(circleContainerHTML, 'flip-circle', 'unflip-circle');
-        toggleVisibility(progressButtonsHTML, flipCardButtonHTML);
+        helper.toggleCssClass(circleContainerHTML, 'flip-circle', 'unflip-circle');
+        helper.toggleVisibility(progressButtonsHTML, flipCardButtonHTML);
 
         frontJapaneseCardVisible = true;
 
         
     }
 
-    toggleCssClass(englishPhraseContainerHTML,'flip-unshadow', 'flip-shadow');
-    toggleCssClass(japanesePhraseContainerHTML,'flip-unshadow', 'flip-shadow');
+    helper.toggleCssClass(englishPhraseContainerHTML,'flip-unshadow', 'flip-shadow');
+    helper.toggleCssClass(japanesePhraseContainerHTML,'flip-unshadow', 'flip-shadow');
 
 
     setTimeout(() => {
-        toggleCssClass(englishPhraseContainerHTML,'flip-shadow', 'flip-unshadow');
-        toggleCssClass(japanesePhraseContainerHTML,'flip-shadow', 'flip-unshadow');
+        helper.toggleCssClass(englishPhraseContainerHTML,'flip-shadow', 'flip-unshadow');
+        helper.toggleCssClass(japanesePhraseContainerHTML,'flip-shadow', 'flip-unshadow');
     }, 1500);
 };
 flipCardButtonHTML.addEventListener('click', flipCard);
