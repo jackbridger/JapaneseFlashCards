@@ -144,7 +144,7 @@ let lowestProgressPile = 0;
 let japaneseAudioRecording;
 
 // Updates HTML with next phrase and audio. Also adds a click event to play pause audio 
-function updateCurrentPhraseAndAudioHTML() {
+const updateCurrentPhraseAndAudioHTML = () => {
     document.getElementById('english-text').innerText = phraseData.phraseJSON[phraseProgressPiles[lowestProgressPile][0]].englishText;
     document.getElementById('japanese-text').innerText = phraseData.phraseJSON[phraseProgressPiles[lowestProgressPile][0]].japaneseText;
     document.getElementById('english-number').innerText = phraseData.phraseJSON[phraseProgressPiles[lowestProgressPile][0]].cardNumber;
@@ -152,7 +152,7 @@ function updateCurrentPhraseAndAudioHTML() {
     
     japaneseAudioRecording = new Audio(phraseData.phraseJSON[phraseProgressPiles[lowestProgressPile][0]].audioLink);
 
-    var audioIsPlaying = function () {
+    const audioIsPlaying = () => {
         return japaneseAudioRecording
             && japaneseAudioRecording.currentTime > 0
             && !japaneseAudioRecording.paused
@@ -160,7 +160,7 @@ function updateCurrentPhraseAndAudioHTML() {
             && japaneseAudioRecording.readyState > 2;
     }
 
-    document.getElementById('audio-link').addEventListener('click',function() {
+    document.getElementById('audio-link').addEventListener('click',() => {
         if (audioIsPlaying()) {
             japaneseAudioRecording.pause();
             }
@@ -173,29 +173,28 @@ function updateCurrentPhraseAndAudioHTML() {
 
 }
 // HTML elems of front (japanese) and back (english) of the card. And the flip button.
-let japanesePhraseContainerHTML = document.getElementById('circle-area__body__front');
+const japanesePhraseContainerHTML = document.getElementById('circle-area__body__front');
 // japanesePhraseContainerHTML.style.visibility = 'visible';
-let englishPhraseContainerHTML = document.getElementById('circle-area__body__back');
+const englishPhraseContainerHTML = document.getElementById('circle-area__body__back');
 // englishPhraseContainerHTML.style.visibility = 'hidden';
 
-let flipCardButtonHTML = document.getElementById('btn-flip');
+const flipCardButtonHTML = document.getElementById('btn-flip');
 flipCardButtonHTML.style.visibility = 'visible';
 
-let progressButtonsHTML = document.getElementById('btn-progress-container');
+const progressButtonsHTML = document.getElementById('btn-progress-container');
 progressButtonsHTML.style.visibility = 'hidden';
 
-let circleContainerHTML = document.getElementById('circle-area__body');
-// let circleContainerFrontHTML = document.getElementById('circle-area__front');
-// let circleContainerFrontHTML = document.getElementById('circle-area__back');
+const circleContainerHTML = document.getElementById('circle-area__body');
+
 
 // pressing the buttons
-btnBadHTML = document.getElementById('btn-bad');
-btnOkHTML = document.getElementById('btn-ok');
-btnGoodHTML = document.getElementById('btn-good');
-btnGreatHTML = document.getElementById('btn-great');
+const btnBadHTML = document.getElementById('btn-bad');
+const btnOkHTML = document.getElementById('btn-ok');
+const btnGoodHTML = document.getElementById('btn-good');
+const btnGreatHTML = document.getElementById('btn-great');
 
 // Hides/displays front or back of the flashcard when flip is pressed. 
-flipCard = function() {
+flipCard = () => {
     if (frontJapaneseCardVisible) {
         circleContainerHTML.classList.add('flip-circle');
         circleContainerHTML.classList.remove('unflip-circle');
@@ -239,8 +238,8 @@ flipCardButtonHTML.addEventListener('click', flipCard);
 // Update the current phrase HTML
 // Update the progress count HTML 
 // Flip the card from back to front. 
-function progressCheck(buttonPressed) {
-    current = phraseProgressPiles[lowestProgressPile].shift();
+const progressCheck = (buttonPressed) => {
+    let current = phraseProgressPiles[lowestProgressPile].shift();
 
     if (buttonPressed === 'bad') {
         phraseProgressPiles[1].push(current);
@@ -258,7 +257,8 @@ function progressCheck(buttonPressed) {
         }
     }
     // Find the lowest level of confidence pile
-    for (var i = 4; i >= 0; i--) {
+    
+    for (let i = 4; i >= 0; i--) {
         if (phraseProgressPiles[i].length > 0){
             lowestProgressPile = i;
         }
@@ -266,11 +266,11 @@ function progressCheck(buttonPressed) {
 
         
         flipCard();
-        setTimeout(function() {updateCurrentPhraseAndAudioHTML();}, 750);
+        setTimeout(() => {updateCurrentPhraseAndAudioHTML();}, 750);
         
 }
 
-function calculateProgressNumber() {
+calculateProgressNumber = () => {
     let progressPercent = 0;
     let pointsEarned = 0;
     let totalPointsAvailable = 4 * phraseData.numberOfPhrases;
@@ -281,18 +281,18 @@ function calculateProgressNumber() {
     return progressPercent;
 }
 // This runs when the user completes 'great' on all words.
-function endCredits() {
-    document.getElementById('page-title').style.display = 'none';
-    document.getElementById('circle-area').style.display = 'none';
-    document.getElementById('button-area').style.display = 'none';
-    document.getElementById('progress-area').style.display = 'none';
+const endCredits = () => {
+    ['page-title','circle-area', 'button-area', 'progress-area'].forEach(id => {
+        document.getElementById(id).style.display = 'none';
+    })
+
     document.body.removeAttribute('style');
 
-    let endCreditsHTML = document.getElementById('end-credits');
-    endCreditsContainerHTML = document.getElementById('end-credits-container');
+    const endCreditsHTML = document.getElementById('end-credits');
+    const endCreditsContainerHTML = document.getElementById('end-credits-container');
     endCreditsContainerHTML.style.display = 'inline';
 
-    let documentBodyStyle = document.body.style
+    const documentBodyStyle = document.body.style
     documentBodyStyle.backgroundColor = 'black';
     documentBodyStyle.width = '100%';
     documentBodyStyle.height = '100%';
@@ -300,6 +300,6 @@ function endCredits() {
 
 
 // initalise the phrases and counts
-(function() {
+(() => {
     updateCurrentPhraseAndAudioHTML();
 })();
