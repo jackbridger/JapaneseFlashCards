@@ -136,6 +136,15 @@ phraseData.phraseJSON.forEach((phrase, index) => {
     phraseProgressPiles[0].push(index);
 }) 
 
+const toggleVisibility = (goHidden, goVisibile) => {
+    goHidden.style.visibility = 'hidden';
+    goVisibile.style.visibility = 'visible';
+}
+
+const toggleCssClass = (element, removeClass, addClass) => {
+    element.classList.add(addClass);
+    element.classList.remove(removeClass);
+}
 
 // Initially, we go through the untested set of cards. This value corresponds to the 
 // lowest progress pile which contains a number(s).
@@ -187,12 +196,16 @@ const englishPhraseContainerHTML = document.getElementById('circle-area__body__b
 
 
 const flipCardButtonHTML = document.getElementById('btn-flip');
-flipCardButtonHTML.style.visibility = 'visible';
+
 
 const progressButtonsHTML = document.getElementById('btn-progress-container');
-progressButtonsHTML.style.visibility = 'hidden';
+
+
+toggleVisibility(progressButtonsHTML, flipCardButtonHTML);
 
 const circleContainerHTML = document.getElementById('circle-area__body');
+
+
 
 
 // pressing the buttons
@@ -204,13 +217,9 @@ const btnGreatHTML = document.getElementById('btn-great');
 // Hides/displays front or back of the flashcard when flip is pressed. 
 flipCard = () => {
     if (frontJapaneseCardVisible) {
-        circleContainerHTML.classList.add('flip-circle');
-        circleContainerHTML.classList.remove('unflip-circle');
-        
-        
+        toggleCssClass(circleContainerHTML, 'unflip-circle', 'flip-circle');
+        toggleVisibility(flipCardButtonHTML, progressButtonsHTML);
 
-        flipCardButtonHTML.style.visibility = 'hidden';
-        progressButtonsHTML.style.visibility = 'visible';
         if (!japaneseAudioRecording.paused) {
             japaneseAudioRecording.pause();
         }
@@ -219,25 +228,22 @@ flipCard = () => {
 
     }
     else {
-        circleContainerHTML.classList.remove('flip-circle');
-        circleContainerHTML.classList.add('unflip-circle');
 
+        toggleCssClass(circleContainerHTML, 'flip-circle', 'unflip-circle');
         toggleVisibility(progressButtonsHTML, flipCardButtonHTML);
 
         frontJapaneseCardVisible = true;
 
         
     }
-    japanesePhraseContainerHTML.classList.add('flip-shadow');
-    englishPhraseContainerHTML.classList.add('flip-shadow');
-    englishPhraseContainerHTML.classList.remove('flip-unshadow');
-    japanesePhraseContainerHTML.classList.remove('flip-unshadow');
+
+    toggleCssClass(englishPhraseContainerHTML,'flip-unshadow', 'flip-shadow');
+    toggleCssClass(japanesePhraseContainerHTML,'flip-unshadow', 'flip-shadow');
+
 
     setTimeout(() => {
-        englishPhraseContainerHTML.classList.remove('flip-shadow');
-        japanesePhraseContainerHTML.classList.remove('flip-shadow');
-        japanesePhraseContainerHTML.classList.add('flip-unshadow');
-        englishPhraseContainerHTML.classList.add('flip-unshadow');
+        toggleCssClass(englishPhraseContainerHTML,'flip-shadow', 'flip-unshadow');
+        toggleCssClass(japanesePhraseContainerHTML,'flip-shadow', 'flip-unshadow');
     }, 1500);
 };
 flipCardButtonHTML.addEventListener('click', flipCard);
@@ -307,10 +313,7 @@ const endCredits = () => {
     documentBodyStyle.height = '100%';
 }
 
-const toggleVisibility = (goHidden, goVisibile) => {
-    goHidden.style.visibility = 'hidden';
-    goVisibile.style.visibility = 'visible';
-}
+
 
 
 // initalise the phrases and counts
