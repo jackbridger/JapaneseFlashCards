@@ -22,5 +22,23 @@ const helper = {
         else {
             audioElem.play();
         }
+    },
+    progressBarWidth: (phraseProgressPiles) => {
+        let progressPercent = 0;
+        let pointsEarned = 0;
+        let totalPointsAvailable = 4 * phraseJSON.length;
+        for (let i = 1; i < phraseProgressPiles.length; i++ ) {
+            pointsEarned += phraseProgressPiles[i].length * i
+        }
+        progressPercent = (pointsEarned / totalPointsAvailable) * 100;
+        return (Math.max(1,progressPercent)) + '%';
+    },
+    findLowestProgPile: (phraseProgressPiles, lowestProgressPile) => {
+        for (let i = 4; i >= 0; i--) {
+            if (phraseProgressPiles[i].length > 0){
+                lowestProgressPile = i;
+            }
+        }
+        return lowestProgressPile;
     }
 }
