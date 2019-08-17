@@ -130,15 +130,13 @@ let frontJapaneseCardVisible = true;
 // The numbers stored in the arrays keys which map to each phrase in JSON object. 
 // Initally, all phrases are in the first array - the untested array. 
 // The far right right array is where the phrases which are perfected are.
-let phraseProgressPiles = [[],[],[],[],[]];
+const phraseProgressPiles = [[],[],[],[],[]];
 
 phraseData.phraseJSON.forEach((phrase, index) => {
     phraseProgressPiles[0].push(index);
 }) 
 
-// for (let i = 0; i <= phraseData.phraseJSON.length -1; i++) {
-//     phraseProgressPiles[0].push(i);
-// }
+
 // Initially, we go through the untested set of cards. This value corresponds to the 
 // lowest progress pile which contains a number(s).
 let lowestProgressPile = 0;
@@ -148,11 +146,18 @@ let japaneseAudioRecording;
 
 // Updates HTML with next phrase and audio. Also adds a click event to play pause audio 
 const updateCurrentPhraseAndAudioHTML = () => {
-    document.getElementById('english-text').innerText = phraseData.phraseJSON[phraseProgressPiles[lowestProgressPile][0]].englishText;
-    document.getElementById('japanese-text').innerText = phraseData.phraseJSON[phraseProgressPiles[lowestProgressPile][0]].japaneseText;
-    document.getElementById('english-number').innerText = phraseData.phraseJSON[phraseProgressPiles[lowestProgressPile][0]].cardNumber;
-    document.getElementById('japanese-number').innerText = phraseData.phraseJSON[phraseProgressPiles[lowestProgressPile][0]].cardNumber;
-    
+    const elementsToUpdate = {
+        'english-text': 'englishText',
+        'japanese-text': 'japaneseText',
+        'english-number': 'cardNumber',
+        'japanese-number': 'cardNumber'
+    };
+    const elementsKeys = Object.keys(elementsToUpdate);
+
+    elementsKeys.forEach(element => {
+        document.getElementById(element).innerText = phraseData.phraseJSON[phraseProgressPiles[lowestProgressPile][0]][elementsToUpdate[element]];
+    } )
+
     japaneseAudioRecording = new Audio(phraseData.phraseJSON[phraseProgressPiles[lowestProgressPile][0]].audioLink);
 
     const audioIsPlaying = () => {
@@ -177,9 +182,9 @@ const updateCurrentPhraseAndAudioHTML = () => {
 }
 // HTML elems of front (japanese) and back (english) of the card. And the flip button.
 const japanesePhraseContainerHTML = document.getElementById('circle-area__body__front');
-// japanesePhraseContainerHTML.style.visibility = 'visible';
+
 const englishPhraseContainerHTML = document.getElementById('circle-area__body__back');
-// englishPhraseContainerHTML.style.visibility = 'hidden';
+
 
 const flipCardButtonHTML = document.getElementById('btn-flip');
 flipCardButtonHTML.style.visibility = 'visible';
@@ -216,8 +221,9 @@ flipCard = () => {
     else {
         circleContainerHTML.classList.remove('flip-circle');
         circleContainerHTML.classList.add('unflip-circle');
-        progressButtonsHTML.style.visibility = 'hidden';
-        flipCardButtonHTML.style.visibility = 'visible';
+
+        toggleVisibility(progressButtonsHTML, flipCardButtonHTML);
+
         frontJapaneseCardVisible = true;
 
         
@@ -299,6 +305,11 @@ const endCredits = () => {
     documentBodyStyle.backgroundColor = 'black';
     documentBodyStyle.width = '100%';
     documentBodyStyle.height = '100%';
+}
+
+const toggleVisibility = (goHidden, goVisibile) => {
+    goHidden.style.visibility = 'hidden';
+    goVisibile.style.visibility = 'visible';
 }
 
 
