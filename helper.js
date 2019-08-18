@@ -40,5 +40,18 @@ const helper = {
             }
         }
         return lowestProgressPile;
+    },
+    elementsToUpdateNextCard: {
+        'english-text': 'englishText',
+        'japanese-text': 'japaneseText',
+        'english-number': 'cardNumber',
+        'japanese-number': 'cardNumber'
+    },
+    
+    updateTextOnFlashcard: (phraseProgressPiles, lowestProgressPile) => {
+        Object.keys(helper.elementsToUpdateNextCard).forEach(element => {
+            document.getElementById(element).innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]][helper.elementsToUpdateNextCard[element]];
+        } )
     }
+
 }

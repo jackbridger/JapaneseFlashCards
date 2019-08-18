@@ -8,7 +8,10 @@ const btnOkHTML = document.getElementById('btn-ok');
 const btnGoodHTML = document.getElementById('btn-good');
 const btnGreatHTML = document.getElementById('btn-great');
 
+// initially visible
 let frontJapaneseCardVisible = true;
+// Each card starts in the first pile untested, it then moves into either bad, good, ok or great.
+// Organised from left to right
 const phraseProgressPiles = [[],[],[],[],[]];
 phraseJSON.forEach((phrase, index) => {
     phraseProgressPiles[0].push(index);
@@ -20,16 +23,10 @@ let lowestProgressPile = 0;
 let japaneseAudioRecording;
 // Updates HTML with next phrase and audio. Also adds a click event to play pause audio 
 const updateCurrentPhraseAndAudioHTML = () => {
-    const elementsToUpdateNextCard = {
-        'english-text': 'englishText',
-        'japanese-text': 'japaneseText',
-        'english-number': 'cardNumber',
-        'japanese-number': 'cardNumber'
-    };
-    const elementsKeys = Object.keys(elementsToUpdateNextCard);
-    elementsKeys.forEach(element => {
-        document.getElementById(element).innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]][elementsToUpdateNextCard[element]];
-    } )
+    
+    // Update the current flashcard app
+    helper.updateTextOnFlashcard(phraseProgressPiles, lowestProgressPile);
+
     japaneseAudioRecording = new Audio(phraseJSON[phraseProgressPiles[lowestProgressPile][0]].audioLink);
     document.getElementById('audio-link').addEventListener('click',() => {
         helper.toggleAudio(japaneseAudioRecording);
