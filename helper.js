@@ -33,6 +33,10 @@ const helper = {
         progressPercent = (pointsEarned / totalPointsAvailable) * 100;
         return (Math.max(1,progressPercent)) + '%';
     },
+    updateProgressBar: () => {
+        document.getElementById('progress-bar').style.width = helper.progressBarWidth(phraseProgressPiles);
+    }
+    ,
     findLowestProgPile: (phraseProgressPiles, lowestProgressPile) => {
         for (let i = 4; i >= 0; i--) {
             if (phraseProgressPiles[i].length > 0){
@@ -48,10 +52,21 @@ const helper = {
         'japanese-number': 'cardNumber'
     },
     
-    updateTextOnFlashcard: (phraseProgressPiles, lowestProgressPile) => {
+    returnCurrentCard: (phraseProgressPiles,lowestProgressPile ) => {
+        return phraseJSON[phraseProgressPiles[lowestProgressPile][0]]
+    }
+    ,updateTextOnFlashcard: (currentCard) => {
         Object.keys(helper.elementsToUpdateNextCard).forEach(element => {
-            document.getElementById(element).innerText = phraseJSON[phraseProgressPiles[lowestProgressPile][0]][helper.elementsToUpdateNextCard[element]];
+            document.getElementById(element).innerText = currentCard[helper.elementsToUpdateNextCard[element]];
         } )
+    },
+    getCurrentAudio: (currentCard) => {
+        return new Audio(currentCard.audioLink);
+    },
+    placeJapaneseAudio: () => {
+        document.getElementById('audio-link').addEventListener('click',() => {
+            helper.toggleAudio(japaneseAudioRecording);
+        });
     }
 
 }

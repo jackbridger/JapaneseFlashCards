@@ -22,17 +22,13 @@ let lowestProgressPile = 0;
 // Declare the audio so that is global within script.js.
 let japaneseAudioRecording;
 // Updates HTML with next phrase and audio. Also adds a click event to play pause audio 
-const updateCurrentPhraseAndAudioHTML = () => {
-    
+const updateCurrentPhraseAndAudioHTML = () => {    
     // Update the current flashcard app
-    helper.updateTextOnFlashcard(phraseProgressPiles, lowestProgressPile);
-
-    japaneseAudioRecording = new Audio(phraseJSON[phraseProgressPiles[lowestProgressPile][0]].audioLink);
-    document.getElementById('audio-link').addEventListener('click',() => {
-        helper.toggleAudio(japaneseAudioRecording);
-    } 
-    );
-    document.getElementById('progress-bar').style.width = helper.progressBarWidth(phraseProgressPiles);
+    const currentCard = helper.returnCurrentCard(phraseProgressPiles, lowestProgressPile)
+    helper.updateTextOnFlashcard(currentCard);
+    japaneseAudioRecording = helper.getCurrentAudio(currentCard);
+    helper.placeJapaneseAudio();
+    helper.updateProgressBar();
 }
 // HTML elems of front (japanese) and back (english) of the card. And the flip button.
 helper.toggleVisibility(progressButtonsHTML, flipCardButtonHTML);
